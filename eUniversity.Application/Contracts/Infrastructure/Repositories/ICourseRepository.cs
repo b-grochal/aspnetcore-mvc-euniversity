@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eUniversity.Application.Contracts.Persistence
+namespace eUniversity.Application.Contracts.Infrastructure.Repositories
 {
     public interface ICourseRepository : IAsyncRepository<Course>
     {

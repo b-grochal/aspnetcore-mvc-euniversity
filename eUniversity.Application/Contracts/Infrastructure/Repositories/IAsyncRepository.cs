@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eUniversity.Application.Contracts.Persistence
+namespace eUniversity.Application.Contracts.Infrastructure.Repositories
 {
     public interface IAsyncRepository<T> where T : class
     {
