@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Functions\Admins\Queries\GetAdminsList\" />
-    <Folder Include="Functions\Admins\Queries\GetAdminDetail\" />
   </ItemGroup>
 
 </Project>
