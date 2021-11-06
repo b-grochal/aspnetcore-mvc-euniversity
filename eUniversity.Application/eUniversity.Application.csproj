@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Functions\Admins\Commands\UpdateAdmin\" />
     <Folder Include="Functions\Admins\Queries\GetAdminsList\" />
     <Folder Include="Functions\Admins\Queries\GetAdminDetail\" />
   </ItemGroup>
