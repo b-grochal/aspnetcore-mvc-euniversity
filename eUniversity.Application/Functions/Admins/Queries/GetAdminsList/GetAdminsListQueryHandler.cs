@@ -20,9 +20,10 @@ namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
             _mapper = mapper;
         }
 
-        public Task<List<AdminViewModel>> Handle(GetAdminsListQuery request, CancellationToken cancellationToken)
+        public async Task<List<AdminViewModel>> Handle(GetAdminsListQuery request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var admins = await _adminRepository.GetAllAsync();
+            return _mapper.Map<List<AdminViewModel>>(admins);
         }
     }
 }
