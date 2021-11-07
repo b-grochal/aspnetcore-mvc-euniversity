@@ -32,7 +32,7 @@ namespace eUniversity.Application.Functions.Admins.Commands.CreateAdmin
             var admin = _mapper.Map<Admin>(request);
             admin = await _adminRepository.AddAsync(admin);
 
-            return new CreateAdminCommandResponse(admin.AdminID);
+            return new CreateAdminCommandResponse(admin.AdminId);
         }
     }
 }

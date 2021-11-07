@@ -7,7 +7,7 @@ namespace eUniversity.Domain.Enitities
 {
     public class Degree : AuditableEntity
     {
-        public int DegreeID { get; set; }
+        public int DegreeId { get; set; }
         public string Name { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
