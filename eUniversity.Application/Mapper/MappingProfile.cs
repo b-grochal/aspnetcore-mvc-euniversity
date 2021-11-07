@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using eUniversity.Application.Functions.Admins.Commands.CreateAdmin;
 using eUniversity.Application.Functions.Admins.Commands.UpdateAdmin;
+using eUniversity.Application.Functions.Admins.Queries.GetAdminDetail;
+using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.Domain.Enitities;
 using System;
 using System.Collections.Generic;
@@ -12,9 +14,17 @@ namespace eUniversity.Application.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<CreateAdminCommand, Admin>().ReverseMap();
+            CreateMap<CreateAdminCommand, Admin>()
+                .ReverseMap();
 
-            CreateMap<UpdateAdminCommand, Admin>().ReverseMap();
+            CreateMap<UpdateAdminCommand, Admin>()
+                .ReverseMap();
+
+            CreateMap<Admin, AdminDetailViewModel>()
+                .ReverseMap();
+
+            CreateMap<Admin, AdminViewModel>()
+                .ReverseMap();
         }
     }
 }
