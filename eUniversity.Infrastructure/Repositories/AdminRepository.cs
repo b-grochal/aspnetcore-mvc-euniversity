@@ -1,4 +1,5 @@
-﻿using eUniversity.Application.Contracts.Infrastructure.Repositories;
+﻿using AutoMapper;
+using eUniversity.Application.Contracts.Infrastructure.Repositories;
 using eUniversity.Domain.Enitities;
 using eUniversity.Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -13,15 +14,19 @@ namespace eUniversity.Infrastructure.Repositories
     public class AdminRepository : IAdminRepository
     {
         private readonly UserManager<IdentityAdmin> _userManager;
+        private readonly IMapper _mapper;
 
-        public AdminRepository(UserManager<IdentityAdmin> userManager)
+        public AdminRepository(UserManager<IdentityAdmin> userManager, IMapper mapper)
         {
             _userManager = userManager;
+            _mapper = mapper;
         }
 
-        public Task<Admin> AddAsync(Admin entity)
+        public async Task<Admin> AddAsync(Admin entity)
         {
-            throw new NotImplementedException();
+            var identityAdmin = _mapper.Map<IdentityAdmin>(entity);
+            var identityResult = await _userManager.CreateAsync(identityAdmin, "P@ssword");
+            return entity;
         }
 
         public Task DeleteAsync(Admin entity)
