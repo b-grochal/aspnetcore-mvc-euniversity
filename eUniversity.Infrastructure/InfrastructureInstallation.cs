@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using eUniversity.Application.Contracts.Infrastructure.Repositories;
 using eUniversity.Infrastructure.Repositories;
+using eUniversity.Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
 
 namespace eUniversity.Infrastructure
 {
@@ -17,6 +19,9 @@ namespace eUniversity.Infrastructure
         {
             services.AddDbContext<EUniversityContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("EUniversityConnectionString")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<EUniversityContext>();
 
             services.AddScoped<IAdminRepository, AdminRepository>();
 

@@ -49,13 +49,14 @@ namespace eUniversity.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             //modelBuilder.
             //    ApplyConfigurationsFromAssembly
             //    (typeof(EduZbieraczContext).Assembly);
 
             modelBuilder.Entity<IdentityAdmin>().ToTable("Admins");
-            modelBuilder.Entity<IdentityAdmin>().ToTable("Students");
-            modelBuilder.Entity<IdentityAdmin>().ToTable("Teachers");
+            modelBuilder.Entity<IdentityStudent>().ToTable("Students");
+            modelBuilder.Entity<IdentityTeacher>().ToTable("Teachers");
 
             //foreach (var item in DummyCategories.Get())
             //{

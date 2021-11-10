@@ -13,10 +13,10 @@ namespace eUniversity.Infrastructure.Repositories
 {
     public class AdminRepository : IAdminRepository
     {
-        private readonly UserManager<IdentityAdmin> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IMapper _mapper;
 
-        public AdminRepository(UserManager<IdentityAdmin> userManager, IMapper mapper)
+        public AdminRepository(UserManager<ApplicationUser> userManager, IMapper mapper)
         {
             _userManager = userManager;
             _mapper = mapper;
