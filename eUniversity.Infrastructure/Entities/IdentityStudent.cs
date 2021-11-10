@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Infrastructure.Entities
 {
-    public class Student : ApplicationUser
+    public class IdentityStudent : ApplicationUser
     {
         public ICollection<Enrollment> Enrollments { get; set; }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Infrastructure.Entities
 {
-    public class Admin : ApplicationUser
+    public class IdentityAdmin : ApplicationUser
     {
     }
 }
