@@ -1,17 +1,15 @@
-﻿using eUniversity.Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eUniversity.Domain.Enitities
+namespace eUniversity.Application.Functions.Admins.Queries.GetAdminDetail
 {
-    public class Student : AuditableEntity
+    public class AdminDetailViewModel
     {
-        public string StudentId { get; set; }
+        public string AdminId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

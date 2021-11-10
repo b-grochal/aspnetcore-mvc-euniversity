@@ -1,17 +1,16 @@
-﻿using eUniversity.Domain.Common;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace eUniversity.Domain.Enitities
+namespace eUniversity.Application.Functions.Admins.Commands.UpdateAdmin
 {
-    public class Student : AuditableEntity
+    public class UpdateAdminCommand : IRequest
     {
-        public string StudentId { get; set; }
+        public int AdminId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
-        public ICollection<Enrollment> Enrollments { get; set; }
     }
 }

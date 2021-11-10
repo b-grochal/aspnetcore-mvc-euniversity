@@ -7,7 +7,7 @@ namespace eUniversity.Domain.Enitities
 {
     public class Subject : AuditableEntity
     {
-        public int SubjectID { get; set; }
+        public int SubjectId { get; set; }
         public string Name { get; set; }
         public ICollection<Course> Courses { get; set; }
     }

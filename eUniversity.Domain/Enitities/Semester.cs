@@ -7,7 +7,7 @@ namespace eUniversity.Domain.Enitities
 {
     public class Semester : AuditableEntity
     {
-        public int SemesterID { get; set; }
+        public int SemesterId { get; set; }
         public string Name { get; set; }
         public ICollection<Semester> Semesters { get; set; }
     }
