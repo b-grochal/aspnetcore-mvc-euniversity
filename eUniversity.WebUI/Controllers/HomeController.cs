@@ -1,4 +1,6 @@
-﻿using eUniversity.WebUI.Models;
+﻿using eUniversity.Infrastructure.Entities;
+using eUniversity.WebUI.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,10 +14,12 @@ namespace eUniversity.WebUI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -23,8 +27,9 @@ namespace eUniversity.WebUI.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> PrivacyAsync()
         {
+            var result = await _userManager.CreateAsync(new IdentityAdmin { FirstName = "Edward", UserName="Edziu" }, "P@ssw0rd");
             return View();
         }
 
