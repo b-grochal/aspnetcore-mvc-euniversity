@@ -10,6 +10,8 @@ using eUniversity.Application.Contracts.Infrastructure.Repositories;
 using eUniversity.Infrastructure.Repositories;
 using eUniversity.Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
+using eUniversity.Infrastructure.Services;
+using eUniversity.Application.Contracts.Infrastructure.Services;
 
 namespace eUniversity.Infrastructure
 {
@@ -23,7 +25,12 @@ namespace eUniversity.Infrastructure
             services.AddIdentity<ApplicationUser, IdentityRole<int>>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<EUniversityContext>();
 
+            services.AddScoped<SignInManager<ApplicationUser>>();
+
+            services.AddScoped<IAuthService, AuthService>();
+            
             services.AddScoped<IAdminRepository, AdminRepository>();
+            
 
             return services;
         }
