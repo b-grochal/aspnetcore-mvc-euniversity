@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace eUniversity.Infrastructure.Migrations
 {
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -383,6 +383,31 @@ namespace eUniversity.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "51f90a3a-0f87-473b-a78e-d5ec6d83bcb1", "Admin", "ADMIN" },
+                    { 2, "25d85151-f38f-4765-b5c1-154ce9d00d12", "Teacher", "TEACHER" },
+                    { 3, "1f24962d-0b5a-4394-8d7a-a504295a4174", "Student", "STUDENT" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { 2, 0, "b0bc9d87-9a22-4ee5-af8f-d09c6887e10b", "michsco123@euniversity.com", true, "Michael", "Scott", false, null, "MICHSCO123@EUNIVERSITY.COM", "MICHSCO123", "AQAAAAEAACcQAAAAEFpg4N3mCqiZNGDqKQS4RuJuUeabMyqPMcxcS0UUA2usBUlqejmm2LLRJhvqdsviMQ==", "123-456-789", true, "e20136ee-9128-4e25-866b-68a803abe47a", false, "michsco123" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { 2, 2 });
+
+            migrationBuilder.InsertData(
+                table: "Teachers",
+                column: "Id",
+                value: 2);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

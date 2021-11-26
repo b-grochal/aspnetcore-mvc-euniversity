@@ -10,8 +10,8 @@ using eUniversity.Infrastructure;
 namespace eUniversity.Infrastructure.Migrations
 {
     [DbContext(typeof(EUniversityContext))]
-    [Migration("20211110212531_Init")]
-    partial class Init
+    [Migration("20211126111951_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,6 +48,29 @@ namespace eUniversity.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "51f90a3a-0f87-473b-a78e-d5ec6d83bcb1",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "25d85151-f38f-4765-b5c1-154ce9d00d12",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ConcurrencyStamp = "1f24962d-0b5a-4394-8d7a-a504295a4174",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -130,6 +153,13 @@ namespace eUniversity.Infrastructure.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 2
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -479,6 +509,27 @@ namespace eUniversity.Infrastructure.Migrations
                     b.HasBaseType("eUniversity.Infrastructure.Entities.ApplicationUser");
 
                     b.ToTable("Teachers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b0bc9d87-9a22-4ee5-af8f-d09c6887e10b",
+                            Email = "michsco123@euniversity.com",
+                            EmailConfirmed = true,
+                            FirstName = "Michael",
+                            LastName = "Scott",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "MICHSCO123@EUNIVERSITY.COM",
+                            NormalizedUserName = "MICHSCO123",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFpg4N3mCqiZNGDqKQS4RuJuUeabMyqPMcxcS0UUA2usBUlqejmm2LLRJhvqdsviMQ==",
+                            PhoneNumber = "123-456-789",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "e20136ee-9128-4e25-866b-68a803abe47a",
+                            TwoFactorEnabled = false,
+                            UserName = "michsco123"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

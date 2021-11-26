@@ -1,5 +1,6 @@
 ﻿using eUniversity.Domain.Common;
 using eUniversity.Domain.Enitities;
+using eUniversity.Infrastructure.DummyData;
 using eUniversity.Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -57,6 +58,25 @@ namespace eUniversity.Infrastructure
             modelBuilder.Entity<IdentityAdmin>().ToTable("Admins");
             modelBuilder.Entity<IdentityStudent>().ToTable("Students");
             modelBuilder.Entity<IdentityTeacher>().ToTable("Teachers");
+
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+
+            foreach(var role in DummyRoles.Get())
+            {
+                modelBuilder.Entity<IdentityRole<int>>().HasData(role);
+            }
+
+            foreach(var teacher in DummyTeachers.Get())
+            {
+                teacher.PasswordHash = passwordHasher.HashPassword(teacher, "P@ssw0rd");
+                teacher.SecurityStamp = Guid.NewGuid().ToString();
+                modelBuilder.Entity<IdentityTeacher>().HasData(teacher);
+            }
+
+            foreach(var userRole in DummyUserRoles.Get())
+            {
+                modelBuilder.Entity<IdentityUserRole<int>>().HasData(userRole);
+            }
 
             //foreach (var item in DummyCategories.Get())
             //{

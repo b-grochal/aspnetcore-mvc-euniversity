@@ -8,6 +8,14 @@ namespace eUniversity.Infrastructure.DummyData
 {
     class DummySeed
     {
+        public static int AdminRole = 1;
+        public static int TeacherRole = 2;
+        public static int StudentRole = 3;
+
+        public static int Admin = 1;
+        public static int Teacher = 2;
+        public static int Student = 3;
+
         public static int ComputerScience = 1;
         public static int Biotechnology = 2;
         public static int Physics = 3;

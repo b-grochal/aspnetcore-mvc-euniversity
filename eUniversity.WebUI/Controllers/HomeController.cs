@@ -38,7 +38,7 @@ namespace eUniversity.WebUI.Controllers
 
         public async Task<IActionResult> LoginAsync()
         {
-            var result = await _authService.Login("Maciek", "P@ssw0rd");
+            var result = await _authService.Login("michsco123", "P@ssw0rd");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
