@@ -10,7 +10,7 @@ using eUniversity.Infrastructure;
 namespace eUniversity.Infrastructure.Migrations
 {
     [DbContext(typeof(EUniversityContext))]
-    [Migration("20211126180500_Init")]
+    [Migration("20211126234123_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,21 +53,21 @@ namespace eUniversity.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "4070318a-a1f7-4838-b220-3a476cf703a0",
+                            ConcurrencyStamp = "2e4e5abf-2c41-463a-b0c2-54c8683cba0b",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "6d81af3b-b49a-460f-bd55-3b3ad18729f8",
+                            ConcurrencyStamp = "8f55c45a-5e76-46ed-8157-3606abc7b214",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "5f4488d7-a4b8-464d-8651-90f3c8b3b05f",
+                            ConcurrencyStamp = "233cb3ee-4ef6-48e7-bf53-9bf4c9865b86",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -191,6 +191,53 @@ namespace eUniversity.Infrastructure.Migrations
                     b.ToTable("ApplicationUserTokens");
                 });
 
+            modelBuilder.Entity("eUniversity.Domain.Enitities.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("LastModifiedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
+
+                    b.HasData(
+                        new
+                        {
+                            AdminId = 1,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "daviwal123@euniversity.com",
+                            FirstName = "David",
+                            LastName = "Wallace",
+                            PhoneNumber = "123-456-789"
+                        });
+                });
+
             modelBuilder.Entity("eUniversity.Domain.Enitities.Course", b =>
                 {
                     b.Property<int>("CourseId")
@@ -242,7 +289,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 2,
                             Name = "Computer programming",
-                            PasswordHash = "$2a$11$gHEq0NqgT86vrGbqeHxcPuylBxWcAmnOwi.7Np0r8TOJm7biWMwCC",
+                            PasswordHash = "$2a$11$4j6PdHPcd6bH76a/lXJSF.wz1JrzNsaO3wFnmSBj1Z4hwUsfZ7miW",
                             SemesterId = 1,
                             SubjectId = 1
                         },
@@ -252,7 +299,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 2,
                             Name = "Chemistry",
-                            PasswordHash = "$2a$11$tJkI0F4sCpM9ApuATmuiLuM8KETAbd50vYN8ZtbKDsZVCFQRYQlLu",
+                            PasswordHash = "$2a$11$.PC14qNh5.vlKSnz9cYrbuEL6EzW8grrhowYsGCmAor3YswthCsl.",
                             SemesterId = 2,
                             SubjectId = 2
                         },
@@ -262,7 +309,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 1,
                             Name = "Astronomy",
-                            PasswordHash = "$2a$11$YqgxgQeTfRRrgTAlcYv.Ee92cS1NPUqdQBLdWiC.3SeKx7bSp4KVy",
+                            PasswordHash = "$2a$11$NL8u7x7lNhmIAFsFR6/8u.NqIdCCrWpMaWYOB/pM2ISfAw.uAX87S",
                             SemesterId = 2,
                             SubjectId = 3
                         },
@@ -272,7 +319,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 3,
                             Name = "Linear algebry",
-                            PasswordHash = "$2a$11$tjIo4HrEtGAeWy6eqE335.p3S09m5O9B8VSzfqYlqk60zSDec.e2a",
+                            PasswordHash = "$2a$11$1J4KkRB69nXRtfrvvlg2fOgzcYtCydnqguCctl49izcBW8xCnQne6",
                             SemesterId = 1,
                             SubjectId = 4
                         });
@@ -361,7 +408,17 @@ namespace eUniversity.Infrastructure.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Enrollment");
+                    b.ToTable("Enrollments");
+
+                    b.HasData(
+                        new
+                        {
+                            EnrollmentId = 1,
+                            CourseId = 1,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            GradeId = 1,
+                            StudentId = 3
+                        });
                 });
 
             modelBuilder.Entity("eUniversity.Domain.Enitities.Grade", b =>
@@ -550,7 +607,18 @@ namespace eUniversity.Infrastructure.Migrations
 
                     b.HasKey("StudentId");
 
-                    b.ToTable("Student");
+                    b.ToTable("Students");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentId = 3,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "dwigsch123@euniversity.com",
+                            FirstName = "Dwight",
+                            LastName = "Schrute",
+                            PhoneNumber = "123-456-789"
+                        });
                 });
 
             modelBuilder.Entity("eUniversity.Domain.Enitities.Subject", b =>
@@ -603,6 +671,53 @@ namespace eUniversity.Infrastructure.Migrations
                             SubjectId = 4,
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             Name = "Mathematics"
+                        });
+                });
+
+            modelBuilder.Entity("eUniversity.Domain.Enitities.Teacher", b =>
+                {
+                    b.Property<int>("TeacherId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset>("CreatedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTimeOffset?>("LastModifiedDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TeacherId");
+
+                    b.ToTable("Teachers");
+
+                    b.HasData(
+                        new
+                        {
+                            TeacherId = 2,
+                            CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
+                            Email = "michsco123@euniversity.com",
+                            FirstName = "Michael",
+                            LastName = "Scott",
+                            PhoneNumber = "123-456-789"
                         });
                 });
 
@@ -677,56 +792,13 @@ namespace eUniversity.Infrastructure.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("ApplicationUsers");
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityEnrollment", b =>
-                {
-                    b.Property<int>("IdentityEnrollmentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("GradeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdentityStudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdentityEnrollmentId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("GradeId");
-
-                    b.HasIndex("IdentityStudentId");
-
-                    b.ToTable("Enrollments");
-
-                    b.HasData(
-                        new
-                        {
-                            IdentityEnrollmentId = 1,
-                            CourseId = 1,
-                            GradeId = 1,
-                            IdentityStudentId = 3
-                        });
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityAdmin", b =>
-                {
-                    b.HasBaseType("eUniversity.Infrastructure.Entities.ApplicationUser");
-
-                    b.ToTable("Admins");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "70bc743d-174f-4a05-9c4d-bf8bc57046fd",
+                            ConcurrencyStamp = "65d7b1f6-1a69-4777-894e-6ecaffb4591c",
                             Email = "daviwal123@euniversity.com",
                             EmailConfirmed = true,
                             FirstName = "David",
@@ -734,55 +806,18 @@ namespace eUniversity.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DAVIWAL123@EUNIVERSITY.COM",
                             NormalizedUserName = "DAVIWAL123",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKCJ08MtxtZz+x77jO/6WEnw1xzw/sNJ9F5ZJCaBRs/Qu+N7FLSIOSoRApcQIQbeog==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENhgwADP84cFISa2AsPh5SxZZJWbJtLLHpll6xMnC2CHMXd6EDpQ6n2lt0A026KZkg==",
                             PhoneNumber = "123-456-789",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "17ff0723-d510-4ee8-bcbe-7bcf14c3f6b2",
+                            SecurityStamp = "753459e6-b901-4a0f-8afb-7078d40727e0",
                             TwoFactorEnabled = false,
                             UserName = "daviwal123"
-                        });
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityStudent", b =>
-                {
-                    b.HasBaseType("eUniversity.Infrastructure.Entities.ApplicationUser");
-
-                    b.ToTable("Students");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 3,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "2b570c9d-e8d7-439f-a7ea-5debaf12802b",
-                            Email = "dwigsch123@euniversity.com",
-                            EmailConfirmed = true,
-                            FirstName = "Dwight",
-                            LastName = "Schrute",
-                            LockoutEnabled = false,
-                            NormalizedEmail = "DWIGSCH123@EUNIVERSITY.COM",
-                            NormalizedUserName = "DWIGSCH123",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFgjci5cAOkZ9Saabs6Oqr+gdzYlGIt820q3r4lYFdvrl7HYmFvLZVdLtyOOkmxo4w==",
-                            PhoneNumber = "123-456-789",
-                            PhoneNumberConfirmed = true,
-                            SecurityStamp = "7bc1d78f-67d8-45c5-9fe6-dac3763dde86",
-                            TwoFactorEnabled = false,
-                            UserName = "dwigsch123"
-                        });
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityTeacher", b =>
-                {
-                    b.HasBaseType("eUniversity.Infrastructure.Entities.ApplicationUser");
-
-                    b.ToTable("Teachers");
-
-                    b.HasData(
+                        },
                         new
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3790ac25-afd4-4d24-9589-9eb6cca1c679",
+                            ConcurrencyStamp = "aa012e24-9c79-49a1-8266-403c0548aa21",
                             Email = "michsco123@euniversity.com",
                             EmailConfirmed = true,
                             FirstName = "Michael",
@@ -790,12 +825,31 @@ namespace eUniversity.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MICHSCO123@EUNIVERSITY.COM",
                             NormalizedUserName = "MICHSCO123",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMyE4Z86vxAzZpw9uztcWN4af7bfMVcsjMt/Gker3yKNApTfO8FRx4MnmMxMguMHRg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOhS25u8P8y0SfLqiXCwHRH22Kt8S3HbTMsv1V6zj5u69pKVuSAMEZSQzWK6hqj1kw==",
                             PhoneNumber = "123-456-789",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "fc44c25a-cb1b-43d5-b3ed-1cccaa72d43d",
+                            SecurityStamp = "41e3aac5-1630-4f68-9a9a-9eaecae11470",
                             TwoFactorEnabled = false,
                             UserName = "michsco123"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2787ffc3-c1d4-456f-81d5-4eadd686fc61",
+                            Email = "dwigsch123@euniversity.com",
+                            EmailConfirmed = true,
+                            FirstName = "Dwight",
+                            LastName = "Schrute",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "DWIGSCH123@EUNIVERSITY.COM",
+                            NormalizedUserName = "DWIGSCH123",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEd/etaQqAX1hLGr22bsECqhXPbvBBywAHqEi1NeQ3/su+QU+ffADDeTorpi40MEIA==",
+                            PhoneNumber = "123-456-789",
+                            PhoneNumberConfirmed = true,
+                            SecurityStamp = "605119ee-2828-4f48-a3c9-80e253e5cfa3",
+                            TwoFactorEnabled = false,
+                            UserName = "dwigsch123"
                         });
                 });
 
@@ -911,60 +965,6 @@ namespace eUniversity.Infrastructure.Migrations
                         .HasForeignKey("SemesterId1");
                 });
 
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityEnrollment", b =>
-                {
-                    b.HasOne("eUniversity.Domain.Enitities.Course", "Course")
-                        .WithMany()
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("eUniversity.Domain.Enitities.Grade", "Grade")
-                        .WithMany()
-                        .HasForeignKey("GradeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("eUniversity.Infrastructure.Entities.IdentityStudent", "IdentityStudent")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("IdentityStudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Grade");
-
-                    b.Navigation("IdentityStudent");
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityAdmin", b =>
-                {
-                    b.HasOne("eUniversity.Infrastructure.Entities.ApplicationUser", null)
-                        .WithOne()
-                        .HasForeignKey("eUniversity.Infrastructure.Entities.IdentityAdmin", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityStudent", b =>
-                {
-                    b.HasOne("eUniversity.Infrastructure.Entities.ApplicationUser", null)
-                        .WithOne()
-                        .HasForeignKey("eUniversity.Infrastructure.Entities.IdentityStudent", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityTeacher", b =>
-                {
-                    b.HasOne("eUniversity.Infrastructure.Entities.ApplicationUser", null)
-                        .WithOne()
-                        .HasForeignKey("eUniversity.Infrastructure.Entities.IdentityTeacher", "Id")
-                        .OnDelete(DeleteBehavior.ClientCascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("eUniversity.Domain.Enitities.Course", b =>
                 {
                     b.Navigation("Enrollments");
@@ -993,11 +993,6 @@ namespace eUniversity.Infrastructure.Migrations
             modelBuilder.Entity("eUniversity.Domain.Enitities.Subject", b =>
                 {
                     b.Navigation("Courses");
-                });
-
-            modelBuilder.Entity("eUniversity.Infrastructure.Entities.IdentityStudent", b =>
-                {
-                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

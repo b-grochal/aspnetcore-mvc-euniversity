@@ -8,6 +8,26 @@ namespace eUniversity.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Admins",
+                columns: table => new
+                {
+                    AdminId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Admins", x => x.AdminId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ApplicationUsers",
                 columns: table => new
                 {
@@ -109,7 +129,7 @@ namespace eUniversity.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Student",
+                name: "Students",
                 columns: table => new
                 {
                     StudentId = table.Column<int>(type: "int", nullable: false)
@@ -125,7 +145,7 @@ namespace eUniversity.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Student", x => x.StudentId);
+                    table.PrimaryKey("PK_Students", x => x.StudentId);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,20 +166,23 @@ namespace eUniversity.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Admins",
+                name: "Teachers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    TeacherId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastModifiedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Admins", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Admins_ApplicationUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_Teachers", x => x.TeacherId);
                 });
 
             migrationBuilder.CreateTable(
@@ -221,40 +244,6 @@ namespace eUniversity.Infrastructure.Migrations
                         principalTable: "ApplicationUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Students",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Students", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Students_ApplicationUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Teachers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teachers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Teachers_ApplicationUsers_Id",
-                        column: x => x.Id,
-                        principalTable: "ApplicationUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -342,7 +331,7 @@ namespace eUniversity.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Enrollment",
+                name: "Enrollments",
                 columns: table => new
                 {
                     EnrollmentId = table.Column<int>(type: "int", nullable: false)
@@ -357,40 +346,7 @@ namespace eUniversity.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enrollment", x => x.EnrollmentId);
-                    table.ForeignKey(
-                        name: "FK_Enrollment_Courses_CourseId",
-                        column: x => x.CourseId,
-                        principalTable: "Courses",
-                        principalColumn: "CourseId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Enrollment_Grades_GradeId",
-                        column: x => x.GradeId,
-                        principalTable: "Grades",
-                        principalColumn: "GradeId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Enrollment_Student_StudentId",
-                        column: x => x.StudentId,
-                        principalTable: "Student",
-                        principalColumn: "StudentId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Enrollments",
-                columns: table => new
-                {
-                    IdentityEnrollmentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    GradeId = table.Column<int>(type: "int", nullable: false),
-                    CourseId = table.Column<int>(type: "int", nullable: false),
-                    IdentityStudentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Enrollments", x => x.IdentityEnrollmentId);
+                    table.PrimaryKey("PK_Enrollments", x => x.EnrollmentId);
                     table.ForeignKey(
                         name: "FK_Enrollments_Courses_CourseId",
                         column: x => x.CourseId,
@@ -404,21 +360,26 @@ namespace eUniversity.Infrastructure.Migrations
                         principalColumn: "GradeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Enrollments_Students_IdentityStudentId",
-                        column: x => x.IdentityStudentId,
+                        name: "FK_Enrollments_Students_StudentId",
+                        column: x => x.StudentId,
                         principalTable: "Students",
-                        principalColumn: "Id",
+                        principalColumn: "StudentId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Admins",
+                columns: new[] { "AdminId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber" },
+                values: new object[] { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "daviwal123@euniversity.com", "David", null, null, "Wallace", "123-456-789" });
 
             migrationBuilder.InsertData(
                 table: "ApplicationUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 2, 0, "3790ac25-afd4-4d24-9589-9eb6cca1c679", "michsco123@euniversity.com", true, "Michael", "Scott", false, null, "MICHSCO123@EUNIVERSITY.COM", "MICHSCO123", "AQAAAAEAACcQAAAAEMyE4Z86vxAzZpw9uztcWN4af7bfMVcsjMt/Gker3yKNApTfO8FRx4MnmMxMguMHRg==", "123-456-789", true, "fc44c25a-cb1b-43d5-b3ed-1cccaa72d43d", false, "michsco123" },
-                    { 1, 0, "70bc743d-174f-4a05-9c4d-bf8bc57046fd", "daviwal123@euniversity.com", true, "David", "Wallace", false, null, "DAVIWAL123@EUNIVERSITY.COM", "DAVIWAL123", "AQAAAAEAACcQAAAAEKCJ08MtxtZz+x77jO/6WEnw1xzw/sNJ9F5ZJCaBRs/Qu+N7FLSIOSoRApcQIQbeog==", "123-456-789", true, "17ff0723-d510-4ee8-bcbe-7bcf14c3f6b2", false, "daviwal123" },
-                    { 3, 0, "2b570c9d-e8d7-439f-a7ea-5debaf12802b", "dwigsch123@euniversity.com", true, "Dwight", "Schrute", false, null, "DWIGSCH123@EUNIVERSITY.COM", "DWIGSCH123", "AQAAAAEAACcQAAAAEFgjci5cAOkZ9Saabs6Oqr+gdzYlGIt820q3r4lYFdvrl7HYmFvLZVdLtyOOkmxo4w==", "123-456-789", true, "7bc1d78f-67d8-45c5-9fe6-dac3763dde86", false, "dwigsch123" }
+                    { 3, 0, "2787ffc3-c1d4-456f-81d5-4eadd686fc61", "dwigsch123@euniversity.com", true, "Dwight", "Schrute", false, null, "DWIGSCH123@EUNIVERSITY.COM", "DWIGSCH123", "AQAAAAEAACcQAAAAEEd/etaQqAX1hLGr22bsECqhXPbvBBywAHqEi1NeQ3/su+QU+ffADDeTorpi40MEIA==", "123-456-789", true, "605119ee-2828-4f48-a3c9-80e253e5cfa3", false, "dwigsch123" },
+                    { 1, 0, "65d7b1f6-1a69-4777-894e-6ecaffb4591c", "daviwal123@euniversity.com", true, "David", "Wallace", false, null, "DAVIWAL123@EUNIVERSITY.COM", "DAVIWAL123", "AQAAAAEAACcQAAAAENhgwADP84cFISa2AsPh5SxZZJWbJtLLHpll6xMnC2CHMXd6EDpQ6n2lt0A026KZkg==", "123-456-789", true, "753459e6-b901-4a0f-8afb-7078d40727e0", false, "daviwal123" },
+                    { 2, 0, "aa012e24-9c79-49a1-8266-403c0548aa21", "michsco123@euniversity.com", true, "Michael", "Scott", false, null, "MICHSCO123@EUNIVERSITY.COM", "MICHSCO123", "AQAAAAEAACcQAAAAEOhS25u8P8y0SfLqiXCwHRH22Kt8S3HbTMsv1V6zj5u69pKVuSAMEZSQzWK6hqj1kw==", "123-456-789", true, "41e3aac5-1630-4f68-9a9a-9eaecae11470", false, "michsco123" }
                 });
 
             migrationBuilder.InsertData(
@@ -448,9 +409,9 @@ namespace eUniversity.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "4070318a-a1f7-4838-b220-3a476cf703a0", "Admin", "ADMIN" },
-                    { 3, "5f4488d7-a4b8-464d-8651-90f3c8b3b05f", "Student", "STUDENT" },
-                    { 2, "6d81af3b-b49a-460f-bd55-3b3ad18729f8", "Teacher", "TEACHER" }
+                    { 1, "2e4e5abf-2c41-463a-b0c2-54c8683cba0b", "Admin", "ADMIN" },
+                    { 2, "8f55c45a-5e76-46ed-8157-3606abc7b214", "Teacher", "TEACHER" },
+                    { 3, "233cb3ee-4ef6-48e7-bf53-9bf4c9865b86", "Student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -459,16 +420,21 @@ namespace eUniversity.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Second", null },
-                    { 4, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Fourth", null },
-                    { 5, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Fifth", null },
-                    { 6, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Sixth", null },
-                    { 7, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Seventh", null },
-                    { 8, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Eighth", null },
-                    { 9, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Ninth", null },
-                    { 10, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Tenth", null },
                     { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "First", null },
-                    { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Third", null }
+                    { 9, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Ninth", null },
+                    { 8, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Eighth", null },
+                    { 10, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Tenth", null },
+                    { 6, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Sixth", null },
+                    { 5, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Fifth", null },
+                    { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Third", null },
+                    { 7, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Seventh", null },
+                    { 4, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), null, null, "Fourth", null }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "StudentId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber" },
+                values: new object[] { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dwigsch123@euniversity.com", "Dwight", null, null, "Schrute", "123-456-789" });
 
             migrationBuilder.InsertData(
                 table: "Subjects",
@@ -482,9 +448,9 @@ namespace eUniversity.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Admins",
-                column: "Id",
-                value: 1);
+                table: "Teachers",
+                columns: new[] { "TeacherId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber" },
+                values: new object[] { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "michsco123@euniversity.com", "Michael", null, null, "Scott", "123-456-789" });
 
             migrationBuilder.InsertData(
                 table: "ApplicationUserRoles",
@@ -492,8 +458,8 @@ namespace eUniversity.Infrastructure.Migrations
                 values: new object[,]
                 {
                     { 1, 1 },
-                    { 3, 3 },
-                    { 2, 2 }
+                    { 2, 2 },
+                    { 3, 3 }
                 });
 
             migrationBuilder.InsertData(
@@ -501,26 +467,16 @@ namespace eUniversity.Infrastructure.Migrations
                 columns: new[] { "CourseId", "CreatedBy", "CreatedDate", "DegreeId", "LastModifiedBy", "LastModifiedDate", "Name", "PasswordHash", "SemesterId", "SubjectId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Computer programming", "$2a$11$gHEq0NqgT86vrGbqeHxcPuylBxWcAmnOwi.7Np0r8TOJm7biWMwCC", 1, 1 },
-                    { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Chemistry", "$2a$11$tJkI0F4sCpM9ApuATmuiLuM8KETAbd50vYN8ZtbKDsZVCFQRYQlLu", 2, 2 },
-                    { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 1, null, null, "Astronomy", "$2a$11$YqgxgQeTfRRrgTAlcYv.Ee92cS1NPUqdQBLdWiC.3SeKx7bSp4KVy", 2, 3 },
-                    { 4, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 3, null, null, "Linear algebry", "$2a$11$tjIo4HrEtGAeWy6eqE335.p3S09m5O9B8VSzfqYlqk60zSDec.e2a", 1, 4 }
+                    { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Computer programming", "$2a$11$4j6PdHPcd6bH76a/lXJSF.wz1JrzNsaO3wFnmSBj1Z4hwUsfZ7miW", 1, 1 },
+                    { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Chemistry", "$2a$11$.PC14qNh5.vlKSnz9cYrbuEL6EzW8grrhowYsGCmAor3YswthCsl.", 2, 2 },
+                    { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 1, null, null, "Astronomy", "$2a$11$NL8u7x7lNhmIAFsFR6/8u.NqIdCCrWpMaWYOB/pM2ISfAw.uAX87S", 2, 3 },
+                    { 4, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 3, null, null, "Linear algebry", "$2a$11$1J4KkRB69nXRtfrvvlg2fOgzcYtCydnqguCctl49izcBW8xCnQne6", 1, 4 }
                 });
 
             migrationBuilder.InsertData(
-                table: "Students",
-                column: "Id",
-                value: 3);
-
-            migrationBuilder.InsertData(
-                table: "Teachers",
-                column: "Id",
-                value: 2);
-
-            migrationBuilder.InsertData(
                 table: "Enrollments",
-                columns: new[] { "IdentityEnrollmentId", "CourseId", "GradeId", "IdentityStudentId" },
-                values: new object[] { 1, 1, 1, 3 });
+                columns: new[] { "EnrollmentId", "CourseId", "CreatedBy", "CreatedDate", "GradeId", "LastModifiedBy", "LastModifiedDate", "StudentId" },
+                values: new object[] { 1, 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 1, null, null, 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationUserClaims_UserId",
@@ -565,21 +521,6 @@ namespace eUniversity.Infrastructure.Migrations
                 column: "SubjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollment_CourseId",
-                table: "Enrollment",
-                column: "CourseId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollment_GradeId",
-                table: "Enrollment",
-                column: "GradeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollment_StudentId",
-                table: "Enrollment",
-                column: "StudentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Enrollments_CourseId",
                 table: "Enrollments",
                 column: "CourseId");
@@ -590,9 +531,9 @@ namespace eUniversity.Infrastructure.Migrations
                 column: "GradeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_IdentityStudentId",
+                name: "IX_Enrollments_StudentId",
                 table: "Enrollments",
-                column: "IdentityStudentId");
+                column: "StudentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoleClaims_RoleId",
@@ -630,9 +571,6 @@ namespace eUniversity.Infrastructure.Migrations
                 name: "ApplicationUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Enrollment");
-
-            migrationBuilder.DropTable(
                 name: "Enrollments");
 
             migrationBuilder.DropTable(
@@ -642,7 +580,7 @@ namespace eUniversity.Infrastructure.Migrations
                 name: "Teachers");
 
             migrationBuilder.DropTable(
-                name: "Student");
+                name: "ApplicationUsers");
 
             migrationBuilder.DropTable(
                 name: "Courses");
@@ -664,9 +602,6 @@ namespace eUniversity.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Subjects");
-
-            migrationBuilder.DropTable(
-                name: "ApplicationUsers");
         }
     }
 }
