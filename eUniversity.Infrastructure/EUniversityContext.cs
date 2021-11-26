@@ -26,10 +26,7 @@ namespace eUniversity.Infrastructure
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<IdentityTeacher> Teachers { get; set; }
 
-        public EUniversityContext(DbContextOptions<EUniversityContext> options) : base(options)
-        {
-
-        }
+        public EUniversityContext(DbContextOptions<EUniversityContext> options) : base(options) { }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
@@ -51,9 +48,14 @@ namespace eUniversity.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.
-            //    ApplyConfigurationsFromAssembly
-            //    (typeof(EduZbieraczContext).Assembly);
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("ApplicationUsers");
+            modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("ApplicationUserLogins");
+            modelBuilder.Entity<IdentityUserToken<int>>().ToTable("ApplicationUserTokens");
+            modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("ApplicationUserClaims");
+            modelBuilder.Entity<IdentityUserRole<int>>().ToTable("ApplicationUserRoles");
+            modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
+            modelBuilder.Entity<IdentityRole<int>>().ToTable("Roles");
 
             modelBuilder.Entity<IdentityAdmin>().ToTable("Admins");
             modelBuilder.Entity<IdentityStudent>().ToTable("Students");
@@ -78,27 +80,36 @@ namespace eUniversity.Infrastructure
                 modelBuilder.Entity<IdentityUserRole<int>>().HasData(userRole);
             }
 
-            //foreach (var item in DummyCategories.Get())
-            //{
-            //    modelBuilder.Entity<Category>().HasData(item);
-            //}
+            foreach(var subject in DummySubjects.Get())
+            {
+                modelBuilder.Entity<Subject>().HasData(subject);
+            }
 
-            //foreach (var item in DummyPosts.Get())
-            //{
-            //    modelBuilder.Entity<Post>(b =>
-            //    {
-            //        b.HasData(item);
-            //        //b.OwnsOne(e => e.Category).HasData(item.Category);
-            //    });
+            foreach (var grade in DummyGrades.Get())
+            {
+                modelBuilder.Entity<Grade>().HasData(grade);
+            }
 
-            //    //modelBuilder.Entity<Post>().HasData(item);
-            //    //modelBuilder.owns
-            //}
+            foreach (var semester in DummySemesters.Get())
+            {
+                modelBuilder.Entity<Semester>().HasData(semester);
+            }
 
-            //foreach (var item in DummyWebinars.Get())
-            //{
-            //    modelBuilder.Entity<Webinar>().HasData(item);
-            //}
+            foreach (var degree in DummyDegrees.Get())
+            {
+                modelBuilder.Entity<Degree>().HasData(degree);
+            }
+
+            foreach(var course in DummyCourses.Get())
+            {
+                course.PasswordHash = BCrypt.Net.BCrypt.HashPassword("P@ssw0rd");
+                modelBuilder.Entity<Course>().HasData(course);
+            }
+
+            foreach(var enrollment in DummyEnrollments.Get())
+            {
+                modelBuilder.Entity<Enrollment>().HasData(enrollment);
+            }   
         }
     }
 }
