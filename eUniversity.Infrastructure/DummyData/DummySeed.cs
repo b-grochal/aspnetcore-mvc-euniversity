@@ -41,5 +41,10 @@ namespace eUniversity.Infrastructure.DummyData
         public static int EighthSemester = 8;
         public static int NinthSemester = 9;
         public static int TenthSemester = 10;
+
+        public static int ComputerProgramming = 1;
+        public static int Chemistry = 2;
+        public static int Astronomy = 3;
+        public static int LinearAlgebry = 4;
     }
 }
