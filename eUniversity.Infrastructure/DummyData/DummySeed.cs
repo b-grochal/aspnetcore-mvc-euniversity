@@ -46,5 +46,7 @@ namespace eUniversity.Infrastructure.DummyData
         public static int Chemistry = 2;
         public static int Astronomy = 3;
         public static int LinearAlgebry = 4;
+
+        public static int FirstEnrollment = 1;
     }
 }

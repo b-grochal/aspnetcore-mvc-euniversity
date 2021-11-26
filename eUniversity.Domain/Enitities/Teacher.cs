@@ -7,7 +7,7 @@ namespace eUniversity.Domain.Enitities
 {
     public class Teacher : AuditableEntity
     {
-        public string TeacherId { get; set; }
+        public int TeacherId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
