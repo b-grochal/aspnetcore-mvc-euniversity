@@ -15,14 +15,17 @@ namespace eUniversity.Infrastructure.DummyData
             {
                 new Degree
                 {
+                    DegreeId = DummySeed.BachelorsDegree,
                     Name = "Bachelor's degree"
                 },
                 new Degree
                 {
+                    DegreeId = DummySeed.EngineersDegree,
                     Name = "Engineer's degree"
                 },
                 new Degree
                 {
+                    DegreeId = DummySeed.MastersDegree,
                     Name = "Master's degree"
                 }
             };

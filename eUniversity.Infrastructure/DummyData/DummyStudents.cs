@@ -26,6 +26,7 @@ namespace eUniversity.Infrastructure.DummyData
                     PhoneNumber = "123-456-789",
                     PhoneNumberConfirmed = true
                 }
+            };
         }
     }
 }

@@ -14,18 +14,22 @@ namespace eUniversity.Infrastructure.DummyData
             return new List<Subject> {
                 new Subject
                 {
+                    SubjectId = DummySeed.ComputerScience,
                     Name = "Computer Science"
                 },
                 new Subject
                 {
+                    SubjectId = DummySeed.Biotechnology,
                     Name = "Biotechnology"
                 },
                 new Subject
                 {
+                    SubjectId = DummySeed.Physics,
                     Name = "Physics"
                 },
                 new Subject
                 {
+                    SubjectId = DummySeed.Mathematics,
                     Name = "Mathematics"
                 }
             };
