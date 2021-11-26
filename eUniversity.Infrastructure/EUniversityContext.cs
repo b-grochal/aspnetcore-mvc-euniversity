@@ -16,15 +16,15 @@ namespace eUniversity.Infrastructure
 {
     public class EUniversityContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
     {
-        public DbSet<IdentityAdmin> Admins { get; set; }
+        public DbSet<Admin> Admins { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Degree> Degrees { get; set; }
         public DbSet<Enrollment> Enrollments { get; set; }
         public DbSet<Grade> Grades { get; set; }
         public DbSet<Semester> Semesters { get; set; }
-        public DbSet<IdentityStudent> Students { get; set; }
+        public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
-        public DbSet<IdentityTeacher> Teachers { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
 
         public EUniversityContext(DbContextOptions<EUniversityContext> options) : base(options) { }
 
@@ -57,10 +57,6 @@ namespace eUniversity.Infrastructure
             modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
             modelBuilder.Entity<IdentityRole<int>>().ToTable("Roles");
 
-            modelBuilder.Entity<IdentityAdmin>().ToTable("Admins");
-            modelBuilder.Entity<IdentityStudent>().ToTable("Students");
-            modelBuilder.Entity<IdentityTeacher>().ToTable("Teachers");
-
             var passwordHasher = new PasswordHasher<ApplicationUser>();
 
             foreach(var role in DummyRoles.Get())
@@ -68,11 +64,11 @@ namespace eUniversity.Infrastructure
                 modelBuilder.Entity<IdentityRole<int>>().HasData(role);
             }
 
-            foreach(var teacher in DummyTeachers.Get())
+            foreach(var applicationUser in DummyApplicationUsers.Get())
             {
-                teacher.PasswordHash = passwordHasher.HashPassword(teacher, "P@ssw0rd");
-                teacher.SecurityStamp = Guid.NewGuid().ToString();
-                modelBuilder.Entity<IdentityTeacher>().HasData(teacher);
+                applicationUser.PasswordHash = passwordHasher.HashPassword(applicationUser, "P@ssw0rd");
+                applicationUser.SecurityStamp = Guid.NewGuid().ToString();
+                modelBuilder.Entity<ApplicationUser>().HasData(applicationUser);
             }
 
             foreach(var userRole in DummyUserRoles.Get())
@@ -100,7 +96,22 @@ namespace eUniversity.Infrastructure
                 modelBuilder.Entity<Degree>().HasData(degree);
             }
 
-            foreach(var course in DummyCourses.Get())
+            foreach (var admin in DummyAdmins.Get())
+            {
+                modelBuilder.Entity<Admin>().HasData(admin);
+            }
+
+            foreach (var teacher in DummyTeachers.Get())
+            {
+                modelBuilder.Entity<Teacher>().HasData(teacher);
+            }
+
+            foreach (var student in DummyStudents.Get())
+            {
+                modelBuilder.Entity<Student>().HasData(student);
+            }
+
+            foreach (var course in DummyCourses.Get())
             {
                 course.PasswordHash = BCrypt.Net.BCrypt.HashPassword("P@ssw0rd");
                 modelBuilder.Entity<Course>().HasData(course);

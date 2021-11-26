@@ -32,7 +32,7 @@ namespace eUniversity.WebUI.Controllers
 
         public async Task<IActionResult> PrivacyAsync()
         {
-            var result = await _userManager.CreateAsync(new IdentityAdmin { FirstName = "Edward", UserName="Maciek" }, "P@ssw0rd");
+            var result = await _userManager.CreateAsync(new ApplicationUser { FirstName = "Edward", UserName="Maciek" }, "P@ssw0rd");
             return View();
         }
 

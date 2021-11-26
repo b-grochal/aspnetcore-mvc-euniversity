@@ -1,4 +1,5 @@
-﻿using eUniversity.Infrastructure.Entities;
+﻿using eUniversity.Domain.Enitities;
+using eUniversity.Infrastructure.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,22 +10,17 @@ namespace eUniversity.Infrastructure.DummyData
 {
     public class DummyStudents
     {
-        public static List<IdentityStudent> Get()
+        public static List<Student> Get()
         {
-            return new List<IdentityStudent>
+            return new List<Student>
             {
-                new IdentityStudent
+                new Student
                 {
-                    Id = DummySeed.Student,
+                    StudentId = DummySeed.Student,
                     FirstName = "Dwight",
                     LastName = "Schrute",
-                    UserName = "dwigsch123",
-                    NormalizedUserName = "DWIGSCH123",
                     Email = "dwigsch123@euniversity.com",
-                    NormalizedEmail = "DWIGSCH123@EUNIVERSITY.COM",
-                    EmailConfirmed = true,
-                    PhoneNumber = "123-456-789",
-                    PhoneNumberConfirmed = true
+                    PhoneNumber = "123-456-789"
                 }
             };
         }
