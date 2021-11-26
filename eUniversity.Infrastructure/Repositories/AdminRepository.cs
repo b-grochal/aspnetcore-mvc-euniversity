@@ -24,7 +24,7 @@ namespace eUniversity.Infrastructure.Repositories
 
         public async Task<Admin> AddAsync(Admin entity)
         {
-            var identityAdmin = _mapper.Map<IdentityAdmin>(entity);
+            var identityAdmin = _mapper.Map<ApplicationUser>(entity);
             var identityResult = await _userManager.CreateAsync(identityAdmin, "P@ssword");
             return entity;
         }

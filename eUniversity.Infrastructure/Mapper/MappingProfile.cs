@@ -13,7 +13,7 @@ namespace eUniversity.Infrastructure.Mapper
     {
         public MappingProfile()
         {
-            CreateMap<Admin, IdentityAdmin>()
+            CreateMap<Admin, ApplicationUser>()
                 .ReverseMap();
         }
     }
