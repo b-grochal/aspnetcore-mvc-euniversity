@@ -13,21 +13,21 @@ namespace eUniversity.Infrastructure.DummyData
         {
             return new List<IdentityUserRole<int>>
             {
-                //new IdentityUserRole<int>
-                //{
-                //    RoleId = DummySeed.AdminRole,
-                //    UserId = DummySeed.Admin
-                //}
+                new IdentityUserRole<int>
+                {
+                    RoleId = DummySeed.AdminRole,
+                    UserId = DummySeed.Admin
+                },
                 new IdentityUserRole<int>
                 {
                     RoleId = DummySeed.TeacherRole,
                     UserId = DummySeed.Teacher
                 },
-                //new IdentityUserRole<int>
-                //{
-                //    RoleId = DummySeed.StudentRole,
-                //    UserId = DummySeed.Student
-                //}
+                new IdentityUserRole<int>
+                {
+                    RoleId = DummySeed.StudentRole,
+                    UserId = DummySeed.Student
+                }
             };
         }
     }
