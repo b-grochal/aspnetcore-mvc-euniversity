@@ -12,9 +12,9 @@ namespace eUniversity.Application.Functions.Auth.Commands.Login
     {
         private readonly IAuthService _authService;
 
-        public LoginCommandHandler(IAuthService authService)
-        {
-            _authService = authService;
+        public LoginCommandHandler()
+        { 
+
         }
 
         public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
