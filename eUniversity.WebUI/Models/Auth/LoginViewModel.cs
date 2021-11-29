@@ -10,8 +10,7 @@ namespace eUniversity.WebUI.Models.Auth
     {
         [Display(Name = "Username")]
         [Required]
-        [EmailAddress]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         [Display(Name = "Password")]
         [Required]
         public string Password { get; set; }

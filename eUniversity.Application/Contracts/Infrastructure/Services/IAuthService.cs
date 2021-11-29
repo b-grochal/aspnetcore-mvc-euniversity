@@ -7,6 +7,6 @@ namespace eUniversity.Application.Contracts.Infrastructure.Services
 {
     public interface IAuthService
     {
-        Task<bool> Login(string userName, string password);
+        Task<bool> Login(string username, string password);
     }
 }

@@ -25,7 +25,7 @@ namespace eUniversity.Application.Functions.Auth.Commands.Login
             if (!validatiorResult.IsValid)
                 return new LoginCommandResponse(validatiorResult);
 
-            var loginResult = await _authService.Login(request.Email, request.Password);
+            var loginResult = await _authService.Login(request.Username, request.Password);
 
             if (!loginResult)
                 return new LoginCommandResponse("Invalid login attempt.", loginResult);
