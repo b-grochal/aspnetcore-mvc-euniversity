@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using eUniversity.Application;
 using eUniversity.Infrastructure;
 using Microsoft.AspNetCore.Identity.UI;
+using System.Reflection;
 
 namespace eUniversity.WebUI
 {
@@ -30,6 +31,7 @@ namespace eUniversity.WebUI
             services.AddEUniversityApplication();
             services.AddEUniversityInfrastructure(Configuration);
             services.AddControllersWithViews();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.ConfigureApplicationCookie(options =>
             {

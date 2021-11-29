@@ -1,4 +1,5 @@
-﻿using eUniversity.Application.Functions.Auth.Commands.Login;
+﻿using AutoMapper;
+using eUniversity.Application.Functions.Auth.Commands.Login;
 using eUniversity.WebUI.Models.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace eUniversity.WebUI.Controllers
     public class AuthController : Controller
     {
         private readonly IMediator _mediator;
+        private readonly IMapper _mapper;
 
-        public AuthController(IMediator mediator)
+        public AuthController(IMediator mediator, IMapper mapper)
         {
             _mediator = mediator;
+            _mapper = mapper;
         }
 
         public IActionResult Login()
@@ -28,6 +31,7 @@ namespace eUniversity.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                var loginCommand = _mapper.Map<LoginCommand>(loginViewModel);
                 return View();
             }
             return View(loginViewModel);
