@@ -20,21 +20,29 @@ namespace eUniversity.WebUI.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login(LoginViewModel loginViewModel)
+        public async Task<IActionResult> LoginAsync(LoginViewModel loginViewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var loginCommand = _mapper.Map<LoginCommand>(loginViewModel);
-                return View();
+                return View(loginViewModel);
             }
-            return View(loginViewModel);
+
+            var loginCommand = _mapper.Map<LoginCommand>(loginViewModel);
+            var response = await _mediator.Send(loginCommand);
+
+            if(!response.Success)
+            {
+                response.ValidationErrors.ForEach(x => ModelState.AddModelError(x, x));
+                return View(loginViewModel);
+            }
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
