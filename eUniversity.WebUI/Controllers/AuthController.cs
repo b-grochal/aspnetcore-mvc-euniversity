@@ -1,4 +1,5 @@
 ﻿using eUniversity.Application.Functions.Auth.Commands.Login;
+using eUniversity.WebUI.Models.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -23,10 +24,13 @@ namespace eUniversity.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginCommand loginCommand)
+        public IActionResult Login(LoginViewModel loginViewModel)
         {
-            ModelState.AddModelError("Test", "test");
-            return View();
+            if (ModelState.IsValid)
+            {
+                return View();
+            }
+            return View(loginViewModel);
         }
     }
 }
