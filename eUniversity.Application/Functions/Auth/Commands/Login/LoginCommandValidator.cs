@@ -9,7 +9,7 @@ namespace eUniversity.Application.Functions.Auth.Commands.Login
     {
         public LoginCommandValidator()
         {
-            RuleFor(c => c.Email)
+            RuleFor(c => c.Username)
                 .NotEmpty()
                 .WithMessage("{PorpertyName} should be not empty.");
 

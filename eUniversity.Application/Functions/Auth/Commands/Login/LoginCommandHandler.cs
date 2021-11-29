@@ -12,9 +12,9 @@ namespace eUniversity.Application.Functions.Auth.Commands.Login
     {
         private readonly IAuthService _authService;
 
-        public LoginCommandHandler()
-        { 
-
+        public LoginCommandHandler(IAuthService authService)
+        {
+            _authService = authService;
         }
 
         public async Task<LoginCommandResponse> Handle(LoginCommand request, CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ namespace eUniversity.Application.Functions.Auth.Commands.Login
             if (!validatiorResult.IsValid)
                 return new LoginCommandResponse(validatiorResult);
 
-            var loginResult = await _authService.Login(request.Email, request.Password);
+            var loginResult = await _authService.Login(request.Username, request.Password);
 
             if (!loginResult)
                 return new LoginCommandResponse("Invalid login attempt.", loginResult);
