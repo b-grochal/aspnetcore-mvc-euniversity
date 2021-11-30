@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.WebUI.Models.Admins;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -61,9 +62,17 @@ namespace eUniversity.WebUI.Controllers
             return View();
         }
 
-        public IActionResult List(string searchedUsername)
+        public async Task<IActionResult> List(string searchedUsername)
         {
-            return View();
+            var getAdminsListQuery = new GetAdminsListQuery
+            {
+                SearchedUsername = searchedUsername
+            };
+
+            var adminsListDto = await _mediator.Send(getAdminsListQuery);
+            var adminsListViewModel = _mapper.Map<AdminsListViewModel>(adminsListDto);
+
+            return View(adminsListViewModel);
         }
     }
 }

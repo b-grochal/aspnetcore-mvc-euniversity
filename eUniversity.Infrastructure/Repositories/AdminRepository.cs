@@ -14,11 +14,13 @@ namespace eUniversity.Infrastructure.Repositories
     public class AdminRepository : IAdminRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly EUniversityContext _eUniversityContext;
         private readonly IMapper _mapper;
 
-        public AdminRepository(UserManager<ApplicationUser> userManager, IMapper mapper)
+        public AdminRepository(UserManager<ApplicationUser> userManager, EUniversityContext eUniversityContext, IMapper mapper)
         {
             _userManager = userManager;
+            _eUniversityContext = eUniversityContext;
             _mapper = mapper;
         }
 
@@ -37,6 +39,13 @@ namespace eUniversity.Infrastructure.Repositories
         public Task<IReadOnlyList<Admin>> GetAllAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IReadOnlyList<Admin>> GetAllByUsernameAsync(string username)
+        {
+            return await _eUniversityContext.Admins
+                .Where(a => username == null || a.Username == username)
+                .ToListAsync();
         }
 
         public Task<Admin> GetByIdAsync(int id)
