@@ -5,7 +5,7 @@ using System.Text;
 
 namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
 {
-    public class GetAdminsListQuery : IRequest<AdminListDto>
+    public class GetAdminsListQuery : IRequest<AdminsListDto>
     {
         public string SearchedUsername { get; set; }
     }

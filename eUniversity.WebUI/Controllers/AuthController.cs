@@ -26,6 +26,7 @@ namespace eUniversity.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> LoginAsync(LoginViewModel loginViewModel)
         {
             if (!ModelState.IsValid)

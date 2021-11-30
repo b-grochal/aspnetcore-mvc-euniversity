@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
 {
-    public class AdminListDto
+    public class AdminsListDto
     {
         public List<AdminDto> Admins { get; set; }
         public string SearchedUsername { get; set; }
