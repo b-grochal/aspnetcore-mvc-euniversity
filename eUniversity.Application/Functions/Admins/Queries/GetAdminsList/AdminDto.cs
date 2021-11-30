@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace eUniversity.Application.Functions.Admins.Queries.GetAdminDetail
+namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
 {
-    public class AdminDetailViewModel
+    public class AdminDto
     {
         public string AdminId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
     }
 }

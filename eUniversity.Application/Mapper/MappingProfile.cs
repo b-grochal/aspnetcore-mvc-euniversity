@@ -20,10 +20,10 @@ namespace eUniversity.Application.Mapper
             CreateMap<UpdateAdminCommand, Admin>()
                 .ReverseMap();
 
-            CreateMap<Admin, AdminDetailViewModel>()
+            CreateMap<Admin, AdminDetailsDto>()
                 .ReverseMap();
 
-            CreateMap<Admin, AdminViewModel>()
+            CreateMap<Admin, AdminDto>()
                 .ReverseMap();
         }
     }

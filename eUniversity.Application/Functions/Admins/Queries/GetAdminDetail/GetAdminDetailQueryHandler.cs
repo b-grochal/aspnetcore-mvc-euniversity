@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Application.Functions.Admins.Queries.GetAdminDetail
 {
-    public class GetAdminDetailQueryHandler : IRequestHandler<GetAdminDetailQuery, AdminDetailViewModel>
+    public class GetAdminDetailQueryHandler : IRequestHandler<GetAdminDetailQuery, AdminDetailsDto>
     {
         private readonly IAdminRepository _adminRepository;
         private readonly IMapper _mapper;
@@ -20,11 +20,11 @@ namespace eUniversity.Application.Functions.Admins.Queries.GetAdminDetail
             _mapper = mapper;
         }
 
-        public async Task<AdminDetailViewModel> Handle(GetAdminDetailQuery request, CancellationToken cancellationToken)
+        public async Task<AdminDetailsDto> Handle(GetAdminDetailQuery request, CancellationToken cancellationToken)
         {
             var admin = await _adminRepository.GetByIdAsync(request.Id);
             
-            var adminDetail = _mapper.Map<AdminDetailViewModel>(admin);
+            var adminDetail = _mapper.Map<AdminDetailsDto>(admin);
 
             return adminDetail; 
         }
