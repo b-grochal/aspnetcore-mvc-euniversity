@@ -1,5 +1,66 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AdminsListViewModel
+
+<form asp-action="List" method="get" class="row">
+    <div class="col-6">
+        <input asp-for="SearchedUsername" class="form-control" placeholder="Username"/>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <input type="submit" value="Search" class="btn btn-primary w-25" />
+    </div>
+</form>
+<hr />
+<div class="row">
+    <div class="col-12">
+        @if (Model.Admins.Count() > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Admins.First().FirstName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Admins.First().LastName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Admins.First().Username)
+                            </th>
+                            <th>
+                                <a asp-controller="Admins" asp-action="Create" class="btn btn-primary">Create admin</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var admin in Model.Admins)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => admin.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => admin.LastName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => admin.Username)
+                                </td>
+                                <td>
+                                    <div>
+                                        <a asp-controller="Admins" asp-action="Edit" asp-route-adminid="@admin.AdminId">Edit</a>
+                                        <a asp-controller="Admins" asp-action="Details" asp-route-adminid="@admin.AdminId">Details</a>
+                                        <a asp-controller="Admins" asp-action="Delete" asp-route-adminid="@admin.AdminId">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No admins found</p>
+        }
+
+    </div>
+</div>
