@@ -11,11 +11,11 @@ namespace eUniversity.Infrastructure.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    AdminId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdminId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -132,11 +132,11 @@ namespace eUniversity.Infrastructure.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    StudentId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -169,11 +169,11 @@ namespace eUniversity.Infrastructure.Migrations
                 name: "Teachers",
                 columns: table => new
                 {
-                    TeacherId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeacherId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -369,17 +369,17 @@ namespace eUniversity.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Admins",
-                columns: new[] { "AdminId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber" },
-                values: new object[] { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "daviwal123@euniversity.com", "David", null, null, "Wallace", "123-456-789" });
+                columns: new[] { "AdminId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber", "Username" },
+                values: new object[] { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "daviwal123@euniversity.com", "David", null, null, "Wallace", "123-456-789", "daviwal123" });
 
             migrationBuilder.InsertData(
                 table: "ApplicationUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 3, 0, "2787ffc3-c1d4-456f-81d5-4eadd686fc61", "dwigsch123@euniversity.com", true, "Dwight", "Schrute", false, null, "DWIGSCH123@EUNIVERSITY.COM", "DWIGSCH123", "AQAAAAEAACcQAAAAEEd/etaQqAX1hLGr22bsECqhXPbvBBywAHqEi1NeQ3/su+QU+ffADDeTorpi40MEIA==", "123-456-789", true, "605119ee-2828-4f48-a3c9-80e253e5cfa3", false, "dwigsch123" },
-                    { 1, 0, "65d7b1f6-1a69-4777-894e-6ecaffb4591c", "daviwal123@euniversity.com", true, "David", "Wallace", false, null, "DAVIWAL123@EUNIVERSITY.COM", "DAVIWAL123", "AQAAAAEAACcQAAAAENhgwADP84cFISa2AsPh5SxZZJWbJtLLHpll6xMnC2CHMXd6EDpQ6n2lt0A026KZkg==", "123-456-789", true, "753459e6-b901-4a0f-8afb-7078d40727e0", false, "daviwal123" },
-                    { 2, 0, "aa012e24-9c79-49a1-8266-403c0548aa21", "michsco123@euniversity.com", true, "Michael", "Scott", false, null, "MICHSCO123@EUNIVERSITY.COM", "MICHSCO123", "AQAAAAEAACcQAAAAEOhS25u8P8y0SfLqiXCwHRH22Kt8S3HbTMsv1V6zj5u69pKVuSAMEZSQzWK6hqj1kw==", "123-456-789", true, "41e3aac5-1630-4f68-9a9a-9eaecae11470", false, "michsco123" }
+                    { 3, 0, "4578b4d6-5045-4f50-bbe6-e60f7c8e42e2", "dwigsch123@euniversity.com", true, "Dwight", "Schrute", false, null, "DWIGSCH123@EUNIVERSITY.COM", "DWIGSCH123", "AQAAAAEAACcQAAAAELonVY/1YhkbXzZYvm8MMLEVBF2K0V689Jo/2NMV5uYw769yyl/ahypH915/I18x3w==", "123-456-789", true, "2ff0531e-5dd1-4dbf-9f42-630f22ec15f9", false, "dwigsch123" },
+                    { 1, 0, "7f94f4d8-bf91-4f0e-bea9-1982e0a3daf2", "daviwal123@euniversity.com", true, "David", "Wallace", false, null, "DAVIWAL123@EUNIVERSITY.COM", "DAVIWAL123", "AQAAAAEAACcQAAAAELHtdaF2BhEhRZ3zZSeOruII6vwSKxhWu0vYNeA0y3b6IODhmYY5eBw3F5XaErm4WA==", "123-456-789", true, "ad116261-669f-487a-b351-cba107b73ae3", false, "daviwal123" },
+                    { 2, 0, "301ed5ee-fbf1-47ee-a618-97a35b487c24", "michsco123@euniversity.com", true, "Michael", "Scott", false, null, "MICHSCO123@EUNIVERSITY.COM", "MICHSCO123", "AQAAAAEAACcQAAAAEO68iYSljcC0l3fBBwNFfnSFPtr+gNe/atpmVxcjbX/DaSd8xM8ws0gvyCbTOiBOjg==", "123-456-789", true, "1493e23b-d4e4-4644-8821-f96dd6924418", false, "michsco123" }
                 });
 
             migrationBuilder.InsertData(
@@ -409,9 +409,9 @@ namespace eUniversity.Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "2e4e5abf-2c41-463a-b0c2-54c8683cba0b", "Admin", "ADMIN" },
-                    { 2, "8f55c45a-5e76-46ed-8157-3606abc7b214", "Teacher", "TEACHER" },
-                    { 3, "233cb3ee-4ef6-48e7-bf53-9bf4c9865b86", "Student", "STUDENT" }
+                    { 1, "e3304093-1c61-43e3-bffc-48de16bc2729", "Admin", "ADMIN" },
+                    { 2, "676b88ee-d1c4-4827-b6ec-3346eccfac58", "Teacher", "TEACHER" },
+                    { 3, "d597e4da-2f16-4086-9a7b-49fafc7128e6", "Student", "STUDENT" }
                 });
 
             migrationBuilder.InsertData(
@@ -433,8 +433,8 @@ namespace eUniversity.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Students",
-                columns: new[] { "StudentId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber" },
-                values: new object[] { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dwigsch123@euniversity.com", "Dwight", null, null, "Schrute", "123-456-789" });
+                columns: new[] { "StudentId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber", "Username" },
+                values: new object[] { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "dwigsch123@euniversity.com", "Dwight", null, null, "Schrute", "123-456-789", "dwigsch123" });
 
             migrationBuilder.InsertData(
                 table: "Subjects",
@@ -449,8 +449,8 @@ namespace eUniversity.Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teachers",
-                columns: new[] { "TeacherId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber" },
-                values: new object[] { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "michsco123@euniversity.com", "Michael", null, null, "Scott", "123-456-789" });
+                columns: new[] { "TeacherId", "CreatedBy", "CreatedDate", "Email", "FirstName", "LastModifiedBy", "LastModifiedDate", "LastName", "PhoneNumber", "Username" },
+                values: new object[] { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), "michsco123@euniversity.com", "Michael", null, null, "Scott", "123-456-789", "michsco123" });
 
             migrationBuilder.InsertData(
                 table: "ApplicationUserRoles",
@@ -467,10 +467,10 @@ namespace eUniversity.Infrastructure.Migrations
                 columns: new[] { "CourseId", "CreatedBy", "CreatedDate", "DegreeId", "LastModifiedBy", "LastModifiedDate", "Name", "PasswordHash", "SemesterId", "SubjectId" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Computer programming", "$2a$11$4j6PdHPcd6bH76a/lXJSF.wz1JrzNsaO3wFnmSBj1Z4hwUsfZ7miW", 1, 1 },
-                    { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Chemistry", "$2a$11$.PC14qNh5.vlKSnz9cYrbuEL6EzW8grrhowYsGCmAor3YswthCsl.", 2, 2 },
-                    { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 1, null, null, "Astronomy", "$2a$11$NL8u7x7lNhmIAFsFR6/8u.NqIdCCrWpMaWYOB/pM2ISfAw.uAX87S", 2, 3 },
-                    { 4, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 3, null, null, "Linear algebry", "$2a$11$1J4KkRB69nXRtfrvvlg2fOgzcYtCydnqguCctl49izcBW8xCnQne6", 1, 4 }
+                    { 1, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Computer programming", "$2a$11$aamtd6IlaXwoihfO0zAmj.Mek13GfiHDtIWDKT.p/Kis7C.lQANEO", 1, 1 },
+                    { 2, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 2, null, null, "Chemistry", "$2a$11$/XfUh2ZbkdHXL6RfASSe2Oz.wjjl4IPyMv0aiGkW5v/QNRyBgAXvO", 2, 2 },
+                    { 3, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 1, null, null, "Astronomy", "$2a$11$mhGYT9gM9kUw1xDbe2/oqegplfarVlvOb92z3slmRymmlEv8vdmm6", 2, 3 },
+                    { 4, null, new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)), 3, null, null, "Linear algebry", "$2a$11$o45Al5kerbsSfBdjDaBPQu1/vAszCEgVthZ8u4CsAECifYZ4ZjDU6", 1, 4 }
                 });
 
             migrationBuilder.InsertData(

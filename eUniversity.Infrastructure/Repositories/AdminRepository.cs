@@ -3,6 +3,7 @@ using eUniversity.Application.Contracts.Infrastructure.Repositories;
 using eUniversity.Domain.Enitities;
 using eUniversity.Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ namespace eUniversity.Infrastructure.Repositories
         public async Task<IReadOnlyList<Admin>> GetAllByUsernameAsync(string username)
         {
             return await _eUniversityContext.Admins
-                .Where(a => username == null || a.Username == username)
+                .Where(a => username == null || a.Username.Equals(username))
                 .ToListAsync();
         }
 
