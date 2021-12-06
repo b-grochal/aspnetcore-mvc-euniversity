@@ -5,13 +5,13 @@ VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6FBFC936-51CD-4191-A3C0-42210E7EA4DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eUniversity.Domain", "eUniversity.Domain\eUniversity.Domain.csproj", "{26315BD8-F6FE-47FB-B5A3-9580BA675B45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eUniversity.Domain", "eUniversity.Domain\eUniversity.Domain.csproj", "{26315BD8-F6FE-47FB-B5A3-9580BA675B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eUniversity.Application", "eUniversity.Application\eUniversity.Application.csproj", "{1F58D8D6-94A4-46D6-9F1A-097124F9450B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eUniversity.Application", "eUniversity.Application\eUniversity.Application.csproj", "{1F58D8D6-94A4-46D6-9F1A-097124F9450B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eUniversity.Infrastructure", "eUniversity.Infrastructure\eUniversity.Infrastructure.csproj", "{3C5F997E-CCC9-4841-B812-EE9EADFB5AEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eUniversity.Infrastructure", "eUniversity.Infrastructure\eUniversity.Infrastructure.csproj", "{3C5F997E-CCC9-4841-B812-EE9EADFB5AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eUniversity.WebUI", "eUniversity.WebUI\eUniversity.WebUI.csproj", "{C41AA9C5-CDFC-4B5A-B739-BAE224C834A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eUniversity.WebUI", "eUniversity.WebUI\eUniversity.WebUI.csproj", "{C41AA9C5-CDFC-4B5A-B739-BAE224C834A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{FB8DAA23-ABDD-4D4E-91AF-B38D1693D310}"
 EndProject

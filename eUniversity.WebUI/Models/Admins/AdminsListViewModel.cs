@@ -8,6 +8,6 @@ namespace eUniversity.WebUI.Models.Admins
     public class AdminsListViewModel
     {
         public List<AdminViewModel> Admins { get; set; }
-        public string SearchedUsername { get; set; }
+        public string SearchedUserName { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
 {
     public class GetAdminsListQuery : IRequest<AdminsListDto>
     {
-        public string SearchedUsername { get; set; }
+        public string SearchedUserName { get; set; }
     }
 }

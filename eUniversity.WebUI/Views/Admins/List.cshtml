@@ -2,7 +2,7 @@
 
 <form asp-action="List" method="get" class="row">
     <div class="col-6">
-        <input asp-for="SearchedUsername" class="form-control" placeholder="Username"/>
+        <input asp-for="SearchedUserName" class="form-control" placeholder="Username"/>
     </div>
     <div class="col-6 d-flex justify-content-end">
         <input type="submit" value="Search" class="btn btn-primary w-25" />
@@ -24,7 +24,7 @@
                                 @Html.DisplayNameFor(model => model.Admins.First().LastName)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Admins.First().Username)
+                                @Html.DisplayNameFor(model => model.Admins.First().UserName)
                             </th>
                             <th>
                                 <a asp-controller="Admins" asp-action="Create" class="btn btn-primary">Create admin</a>
@@ -42,7 +42,7 @@
                                     @Html.DisplayFor(modelItem => admin.LastName)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => admin.Username)
+                                    @Html.DisplayFor(modelItem => admin.UserName)
                                 </td>
                                 <td>
                                     <div>

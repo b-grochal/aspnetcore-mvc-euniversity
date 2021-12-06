@@ -21,6 +21,10 @@ namespace eUniversity.Application.Functions.Admins.Commands.CreateAdmin
                 .NotEmpty()
                 .WithMessage("{PorpertyName} should be not empty.");
 
+            RuleFor(c => c.UserName)
+                .NotEmpty()
+                .WithMessage("{PorpertyName} should be not empty.");
+
             RuleFor(c => c.PhoneNumber)
                 .NotEmpty()
                 .WithMessage("{PorpertyName} should be not empty.");

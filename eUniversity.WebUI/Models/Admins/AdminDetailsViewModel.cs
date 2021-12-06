@@ -20,8 +20,8 @@ namespace eUniversity.WebUI.Models.Admins
         [DisplayName("Email")]
         public string Email { get; set; }
 
-        [DisplayName("Username")]
-        public string Username { get; set; }
+        [DisplayName("User name")]
+        public string UserName { get; set; }
 
         [DisplayName("Phone number")]
         public string PhoneNumber { get; set; }

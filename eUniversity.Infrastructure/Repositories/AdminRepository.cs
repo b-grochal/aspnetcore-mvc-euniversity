@@ -59,7 +59,7 @@ namespace eUniversity.Infrastructure.Repositories
         public async Task<IReadOnlyList<Admin>> GetAllAsync(string username)
         {
             return await _eUniversityContext.Admins
-                .Where(a => username == null || a.Username.Equals(username))
+                .Where(a => username == null || a.UserName.Equals(username))
                 .ToListAsync();
         }
 

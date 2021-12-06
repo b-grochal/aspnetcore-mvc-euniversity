@@ -9,5 +9,6 @@ namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
         public string AdminId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string UserName { get; set; }
     }
 }

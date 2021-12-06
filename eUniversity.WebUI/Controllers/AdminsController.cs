@@ -123,7 +123,7 @@ namespace eUniversity.WebUI.Controllers
         {
             var getAdminsListQuery = new GetAdminsListQuery
             {
-                SearchedUsername = searchedUsername
+                SearchedUserName = searchedUsername
             };
 
             var adminsListDto = await _mediator.Send(getAdminsListQuery);
