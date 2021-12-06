@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using eUniversity.Application.Functions.Admins.Commands.CreateAdmin;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.Application.Functions.Auth.Commands.Login;
 using eUniversity.WebUI.Models.Admins;
@@ -15,6 +16,9 @@ namespace eUniversity.WebUI.Mapper
         public MappingProfile()
         {
             CreateMap<LoginViewModel, LoginCommand>();
+            CreateMap<CreateAdminViewModel, CreateAdminCommand>();
+
+
             CreateMap<AdminDto, AdminViewModel>()
                 .ReverseMap();
             CreateMap<AdminsListDto, AdminsListViewModel>()
