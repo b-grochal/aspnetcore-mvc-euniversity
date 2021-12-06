@@ -6,8 +6,18 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Application.Contracts.Infrastructure.Repositories
 {
-    public interface IAdminRepository : IAsyncRepository<Admin>
+    public interface IAdminRepository
     {
-        Task<IReadOnlyList<Admin>> GetAllByUsernameAsync(string username);
+        Task<Admin> GetByIdAsync(int id);
+
+        Task<IReadOnlyList<Admin>> GetAllAsync();
+
+        Task<Admin> AddAsync(Admin admin, string password);
+
+        Task UpdateAsync(Admin admin);
+
+        Task DeleteAsync(Admin admin);
+
+        Task<IReadOnlyList<Admin>> GetAllAsync(string username);
     }
 }
