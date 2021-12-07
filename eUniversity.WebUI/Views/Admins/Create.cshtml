@@ -3,7 +3,7 @@
 <h3>Create admin</h3>
 <hr />
 
-<form method="post">
+<form asp-controller="Admins" asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-row">
         <div class="form-group col-12 col-md-4">
@@ -48,7 +48,7 @@
     </div>
     <div class="form-group d-flex justify-content-end">
         <input type="submit" value="Create" class="btn btn-primary" />
-        <a class="btn btn-primary ml-2" asp-controller="Products" asp-action="Create">Cancel</a>
+        <a class="btn btn-primary ml-2" asp-controller="Admins" asp-action="List">Cancel</a>
     </div>
 </form>
 

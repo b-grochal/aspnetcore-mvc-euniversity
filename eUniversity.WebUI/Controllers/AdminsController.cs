@@ -34,7 +34,7 @@ namespace eUniversity.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateAdminViewModel createAdminViewModel)
         {
-            if(ModelState.IsValid!)
+            if(!ModelState.IsValid)
             {
                 return View(createAdminViewModel);
             }
@@ -48,7 +48,7 @@ namespace eUniversity.WebUI.Controllers
                 return View(createAdminViewModel);
             }
 
-            return RedirectToAction(nameof(List), nameof(AdminsController));
+            return RedirectToAction(nameof(List));
         }
 
         public async Task<IActionResult> Details(int id)
@@ -81,7 +81,7 @@ namespace eUniversity.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int id, EditAdminViewModel editAdminViewModel)
         {
-            if (ModelState.IsValid!)
+            if (!ModelState.IsValid)
             {
                 return View(editAdminViewModel);
             }
@@ -89,7 +89,7 @@ namespace eUniversity.WebUI.Controllers
             var updateAdminCommand = _mapper.Map<UpdateAdminCommand>(editAdminViewModel);
             await _mediator.Send(updateAdminCommand);
 
-            return RedirectToAction(nameof(List), nameof(AdminsController));
+            return RedirectToAction(nameof(List));
         }
 
         public async Task<IActionResult> Delete(int id)
@@ -116,7 +116,7 @@ namespace eUniversity.WebUI.Controllers
 
             await _mediator.Send(deleteAdminCommand);
 
-            return View();
+            return RedirectToAction(nameof(List));
         }
 
         public async Task<IActionResult> List(string searchedUsername)

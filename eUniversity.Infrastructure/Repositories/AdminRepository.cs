@@ -37,6 +37,7 @@ namespace eUniversity.Infrastructure.Repositories
                 await _userManager.AddToRoleAsync(applicationUser, "Admin");
                 entity.AdminId = applicationUser.Id;
                 await _eUniversityContext.Admins.AddAsync(entity);
+                await _eUniversityContext.SaveChangesAsync();
             }
             return entity;
         }
@@ -49,6 +50,7 @@ namespace eUniversity.Infrastructure.Repositories
             {
                 _eUniversityContext.Admins.Remove(entity);
             }
+            await _eUniversityContext.SaveChangesAsync();
         }
 
         public async Task<IReadOnlyList<Admin>> GetAllAsync()
@@ -77,6 +79,7 @@ namespace eUniversity.Infrastructure.Repositories
             {
                 _eUniversityContext.Admins.Update(entity);
             }
+            await _eUniversityContext.SaveChangesAsync();
         }
     }
 }

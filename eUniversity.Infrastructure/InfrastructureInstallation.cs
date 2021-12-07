@@ -12,6 +12,7 @@ using eUniversity.Infrastructure.Entities;
 using Microsoft.AspNetCore.Identity;
 using eUniversity.Infrastructure.Services;
 using eUniversity.Application.Contracts.Infrastructure.Services;
+using System.Reflection;
 
 namespace eUniversity.Infrastructure
 {
@@ -19,6 +20,7 @@ namespace eUniversity.Infrastructure
     {
         public static IServiceCollection AddEUniversityInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
             services.AddDbContext<EUniversityContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("EUniversityConnectionString")));
 
