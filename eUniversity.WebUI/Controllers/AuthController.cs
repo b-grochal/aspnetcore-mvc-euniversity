@@ -39,6 +39,7 @@ namespace eUniversity.WebUI.Controllers
 
             if(!response.Success)
             {
+                ModelState.AddModelError(response.Message, response.Message);
                 response.ValidationErrors.ForEach(x => ModelState.AddModelError(x, x));
                 return View(loginViewModel);
             }
