@@ -51,11 +51,11 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction(nameof(List));
         }
 
-        public async Task<IActionResult> Details(int id)
+        public async Task<IActionResult> Details(int adminId)
         {
             var getAdminDetailQuery = new GetAdminDetailQuery
             {
-                Id = id
+                Id = adminId
             };
 
             var adminDetailsDto = await _mediator.Send(getAdminDetailQuery);
@@ -64,11 +64,11 @@ namespace eUniversity.WebUI.Controllers
             return View(adminDetailsViewModel);
         }
 
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Edit(int adminId)
         {
             var getAdminDetailQuery = new GetAdminDetailQuery
             {
-                Id = id
+                Id = adminId
             };
 
             var adminDetailsDto = await _mediator.Send(getAdminDetailQuery);
@@ -79,7 +79,7 @@ namespace eUniversity.WebUI.Controllers
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int id, EditAdminViewModel editAdminViewModel)
+        public async Task<IActionResult> EditPost(int adminId, EditAdminViewModel editAdminViewModel)
         {
             if (!ModelState.IsValid)
             {
@@ -92,11 +92,11 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction(nameof(List));
         }
 
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int adminId)
         {
             var getAdminDetailQuery = new GetAdminDetailQuery
             {
-                Id = id
+                Id = adminId
             };
 
             var adminDetailsDto = await _mediator.Send(getAdminDetailQuery);
@@ -107,11 +107,11 @@ namespace eUniversity.WebUI.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int adminId)
         {
             var deleteAdminCommand = new DeleteAdminCommand
             {
-                AdminId = id
+                AdminId = adminId
             };
 
             await _mediator.Send(deleteAdminCommand);
