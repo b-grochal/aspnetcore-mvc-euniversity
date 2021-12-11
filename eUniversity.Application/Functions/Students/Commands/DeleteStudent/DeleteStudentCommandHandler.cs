@@ -20,9 +20,9 @@ namespace eUniversity.Application.Functions.Students.Commands.DeleteStudent
 
         public async Task<Unit> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
-            var adminToDelete = await _studentRepository.GetByIdAsync(request.StudentId);
+            var studentToDelete = await _studentRepository.GetByIdAsync(request.StudentId);
 
-            await _studentRepository.DeleteAsync(adminToDelete);
+            await _studentRepository.DeleteAsync(studentToDelete);
 
             return Unit.Value;
         }

@@ -24,9 +24,9 @@ namespace eUniversity.Application.Functions.Students.Commands.UpdateStudent
 
         public async Task<Unit> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
-            var admin = _mapper.Map<Student>(request);
+            var student = _mapper.Map<Student>(request);
 
-            await _studentRepository.UpdateAsync(admin);
+            await _studentRepository.UpdateAsync(student);
 
             return Unit.Value;
         }
