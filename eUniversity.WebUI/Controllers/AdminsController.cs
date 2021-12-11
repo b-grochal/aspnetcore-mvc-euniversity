@@ -6,6 +6,7 @@ using eUniversity.Application.Functions.Admins.Queries.GetAdminDetail;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.WebUI.Models.Admins;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.WebUI.Controllers
 {
+    [Authorize(Policy="isAdmin")]
     public class AdminsController : Controller
     {
         private readonly IMediator _mediator;

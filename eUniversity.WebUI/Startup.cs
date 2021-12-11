@@ -12,6 +12,8 @@ using eUniversity.Application;
 using eUniversity.Infrastructure;
 using Microsoft.AspNetCore.Identity.UI;
 using System.Reflection;
+using eUniversity.WebUI.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace eUniversity.WebUI
 {
@@ -39,12 +41,37 @@ namespace eUniversity.WebUI
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
-                options.LoginPath = "/Account/Login";
-                options.AccessDeniedPath = "/Account/AccessDenied";
+                options.LoginPath = "/Auth/Login";
+                options.AccessDeniedPath = "/Auth/AccessDenied";
                 options.SlidingExpiration = true;
             });
 
             services.AddSession();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("isAdmin",
+                        policyBuilder =>
+                            policyBuilder.AddRequirements(
+                                new IsAdminRequirement()
+                            ));
+
+                options.AddPolicy("isStudent",
+                        policyBuilder =>
+                            policyBuilder.AddRequirements(
+                                new IsStudentRequirement()
+                            ));
+
+                options.AddPolicy("isTeacher",
+                        policyBuilder =>
+                            policyBuilder.AddRequirements(
+                                new IsTeacherRequirement()
+                            ));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
+            services.AddSingleton<IAuthorizationHandler, IsStudentHandler>();
+            services.AddSingleton<IAuthorizationHandler, IsTeacherHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
