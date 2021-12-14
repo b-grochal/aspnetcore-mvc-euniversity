@@ -3,6 +3,10 @@ using eUniversity.Application.Functions.Admins.Commands.CreateAdmin;
 using eUniversity.Application.Functions.Admins.Commands.UpdateAdmin;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminDetail;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
+using eUniversity.Application.Functions.Courses.Commands.CreateCourse;
+using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
+using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
+using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
 using eUniversity.Application.Functions.Students.Commands.CreateStudent;
 using eUniversity.Application.Functions.Students.Commands.UpdateStudent;
 using eUniversity.Application.Functions.Students.Queries.GetStudentDetails;
@@ -23,43 +27,52 @@ namespace eUniversity.Application.Mapper
         public MappingProfile()
         {
             // Admins
-            CreateMap<CreateAdminCommand, Admin>()
-                .ReverseMap();
+            CreateMap<CreateAdminCommand, Admin>();
 
-            CreateMap<UpdateAdminCommand, Admin>()
-                .ReverseMap();
+            CreateMap<UpdateAdminCommand, Admin>();
 
-            CreateMap<Admin, AdminDetailsDto>()
-                .ReverseMap();
+            CreateMap<Admin, AdminDetailsDto>();
 
-            CreateMap<Admin, AdminDto>()
-                .ReverseMap();
+            CreateMap<Admin, AdminDto>();
 
             // Students
-            CreateMap<CreateStudentCommand, Student>()
-                .ReverseMap();
+            CreateMap<CreateStudentCommand, Student>();
 
-            CreateMap<UpdateStudentCommand, Student>()
-                .ReverseMap();
+            CreateMap<UpdateStudentCommand, Student>();
 
-            CreateMap<Student, StudentDetailsDto>()
-                .ReverseMap();
+            CreateMap<Student, StudentDetailsDto>();
 
-            CreateMap<Student, StudentDto>()
-                .ReverseMap();
+            CreateMap<Student, StudentDto>();
 
             // Teachers
-            CreateMap<CreateTeacherCommand, Teacher>()
-                .ReverseMap();
+            CreateMap<CreateTeacherCommand, Teacher>();
 
-            CreateMap<UpdateTeacherCommand, Teacher>()
-                .ReverseMap();
+            CreateMap<UpdateTeacherCommand, Teacher>();
 
-            CreateMap<Teacher, TeacherDetailsDto>()
-                .ReverseMap();
+            CreateMap<Teacher, TeacherDetailsDto>();
 
-            CreateMap<Teacher, TeacherDto>()
-                .ReverseMap();
+            CreateMap<Teacher, TeacherDto>();
+
+            // Courses
+            CreateMap<CreateCourseCommand, Course>()
+                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom<CoursePasswordHashResolver>());
+
+            CreateMap<UpdateCourseCommand, Course>();
+
+            CreateMap<Enrollment, EnrollmentDto>()
+                 .ForMember(dest => dest.StudentUsername, opt => opt.MapFrom(src => src.Student.UserName))
+                 .ForMember(dest => dest.StudentFullName, opt => opt.MapFrom<StudentFullNameResolver>())
+                 .ForMember(dest => dest.GradeName, opt => opt.MapFrom(src => src.Grade.Name));
+
+            CreateMap<Course, CourseDetailsDto>()
+                .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Subject.Name))
+                .ForMember(dest => dest.DegreeName, opt => opt.MapFrom(src => src.Degree.Name))
+                .ForMember(dest => dest.SemesterName, opt => opt.MapFrom(src => src.Semester.Name));
+
+            CreateMap<Course, CourseDto>()
+                .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Subject.Name))
+                .ForMember(dest => dest.DegreeName, opt => opt.MapFrom(src => src.Degree.Name))
+                .ForMember(dest => dest.SemesterName, opt => opt.MapFrom(src => src.Semester.Name));
         }
     }
 }
