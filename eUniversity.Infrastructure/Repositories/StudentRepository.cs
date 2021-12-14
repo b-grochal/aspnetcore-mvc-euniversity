@@ -12,72 +12,72 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Infrastructure.Repositories
 {
-    public class AdminRepository : IAdminRepository
+    public class StudentRepository : IStudentRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly EUniversityContext _eUniversityContext;
         private readonly IMapper _mapper;
 
-        public AdminRepository(UserManager<ApplicationUser> userManager, EUniversityContext eUniversityContext, IMapper mapper)
+        public StudentRepository(UserManager<ApplicationUser> userManager, EUniversityContext eUniversityContext, IMapper mapper)
         {
             _userManager = userManager;
             _eUniversityContext = eUniversityContext;
             _mapper = mapper;
         }
 
-        public async Task<Admin> AddAsync(Admin admin, string password)
+        public async Task<Student> AddAsync(Student student, string password)
         {
-            var applicationUser = _mapper.Map<ApplicationUser>(admin);
+            var applicationUser = _mapper.Map<ApplicationUser>(student);
             applicationUser.EmailConfirmed = true;
             applicationUser.PhoneNumberConfirmed = true;
             var identityResult = await _userManager.CreateAsync(applicationUser, password);
-            
-            if(identityResult.Succeeded)
+
+            if (identityResult.Succeeded)
             {
-                await _userManager.AddToRoleAsync(applicationUser, "Admin");
-                admin.AdminId = applicationUser.Id;
-                await _eUniversityContext.Admins.AddAsync(admin);
+                await _userManager.AddToRoleAsync(applicationUser, "Student");
+                student.StudentId = applicationUser.Id;
+                await _eUniversityContext.Students.AddAsync(student);
                 await _eUniversityContext.SaveChangesAsync();
             }
-            return admin;
+            return student;
         }
 
-        public async Task DeleteAsync(Admin admin)
+        public async Task DeleteAsync(Student student)
         {
-            var applicationUser = await _userManager.FindByIdAsync(admin.AdminId.ToString());
+            var applicationUser = await _userManager.FindByIdAsync(student.StudentId.ToString());
             var identityResult = await _userManager.DeleteAsync(applicationUser);
-            if(identityResult.Succeeded)
+            if (identityResult.Succeeded)
             {
-                _eUniversityContext.Admins.Remove(admin);
+                _eUniversityContext.Students.Remove(student);
             }
             await _eUniversityContext.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<Admin>> GetAllAsync()
+        public async Task<IReadOnlyList<Student>> GetAllAsync()
         {
-            return await _eUniversityContext.Admins.ToListAsync();
+            return await _eUniversityContext.Students.ToListAsync();
         }
 
-        public async Task<IReadOnlyList<Admin>> GetAllAsync(string username)
+        public async Task<IReadOnlyList<Student>> GetAllAsync(string username)
         {
-            return await _eUniversityContext.Admins
+            return await _eUniversityContext.Students
                 .Where(a => username == null || a.UserName.Equals(username))
                 .ToListAsync();
         }
 
-        public async Task<Admin> GetByIdAsync(int id)
+        public async Task<Student> GetByIdAsync(int id)
         {
-            return await _eUniversityContext.Admins.FindAsync(id);
+            return await _eUniversityContext.Students.FindAsync(id);
         }
 
-        public async Task UpdateAsync(Admin admin)
+        public async Task UpdateAsync(Student student)
         {
-            var applicationUser = await _userManager.FindByIdAsync(admin.AdminId.ToString());
-            var updatedApplicationUser = _mapper.Map(admin, applicationUser);
+            var applicationUser = await _userManager.FindByIdAsync(student.StudentId.ToString());
+            var updatedApplicationUser = _mapper.Map(student, applicationUser);
             var identityResult = await _userManager.UpdateAsync(updatedApplicationUser);
-            if(identityResult.Succeeded)
+            if (identityResult.Succeeded)
             {
-                _eUniversityContext.Admins.Update(admin);
+                _eUniversityContext.Students.Update(student);
             }
             await _eUniversityContext.SaveChangesAsync();
         }
