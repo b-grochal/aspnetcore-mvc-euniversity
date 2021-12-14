@@ -10,7 +10,7 @@ namespace eUniversity.Application.Functions.Students.Commands.CreateStudent
 {
     class CreateStudentCommandResponse : BaseResponse
     {
-        public int? Student { get; set; }
+        public int? StudentId { get; set; }
 
         public CreateStudentCommandResponse() : base()
         { }
@@ -29,7 +29,7 @@ namespace eUniversity.Application.Functions.Students.Commands.CreateStudent
 
         public CreateStudentCommandResponse(int studentId)
         {
-            Student = studentId;
+            StudentId = studentId;
         }
     }
 }

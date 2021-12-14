@@ -18,8 +18,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Functions\Teachers\Commands\" />
-    <Folder Include="Functions\Teachers\Queries\" />
+    <Folder Include="Functions\Teachers\Commands\DeleteTeacher\" />
+    <Folder Include="Functions\Teachers\Commands\UpdateTeacher\" />
+    <Folder Include="Functions\Teachers\Queries\GetTeacherDetails\" />
+    <Folder Include="Functions\Teachers\Queries\GetTeachersList\" />
   </ItemGroup>
 
 </Project>
