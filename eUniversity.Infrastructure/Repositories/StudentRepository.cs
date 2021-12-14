@@ -61,7 +61,7 @@ namespace eUniversity.Infrastructure.Repositories
         public async Task<IReadOnlyList<Student>> GetAllAsync(string username)
         {
             return await _eUniversityContext.Students
-                .Where(a => username == null || a.UserName.Equals(username))
+                .Where(a => username == null || a.UserName.Contains(username))
                 .ToListAsync();
         }
 
