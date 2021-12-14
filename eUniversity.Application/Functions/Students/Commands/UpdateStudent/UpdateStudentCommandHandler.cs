@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Application.Functions.Students.Commands.UpdateStudent
 {
-    class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand>
+    public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand>
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper _mapper;
