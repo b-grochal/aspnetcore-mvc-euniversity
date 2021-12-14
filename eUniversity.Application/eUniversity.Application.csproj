@@ -17,8 +17,4 @@
     <ProjectReference Include="..\eUniversity.Domain\eUniversity.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Functions\Courses\Queries\GetCoursesList\" />
-  </ItemGroup>
-
 </Project>
