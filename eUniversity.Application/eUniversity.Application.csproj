@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Functions\Courses\Commands\UpdateCourse\" />
     <Folder Include="Functions\Courses\Queries\GetCourseDetails\" />
     <Folder Include="Functions\Courses\Queries\GetCoursesList\" />
   </ItemGroup>
