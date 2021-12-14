@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Functions\Teachers\Queries\GetTeacherDetails\" />
     <Folder Include="Functions\Teachers\Queries\GetTeachersList\" />
   </ItemGroup>
 
