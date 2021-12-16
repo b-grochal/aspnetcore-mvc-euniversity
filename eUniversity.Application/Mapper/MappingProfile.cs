@@ -7,10 +7,13 @@ using eUniversity.Application.Functions.Courses.Commands.CreateCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
+using eUniversity.Application.Functions.Degrees.Queries.GetDegreesList;
+using eUniversity.Application.Functions.Semesters.Queries.GetSemestersList;
 using eUniversity.Application.Functions.Students.Commands.CreateStudent;
 using eUniversity.Application.Functions.Students.Commands.UpdateStudent;
 using eUniversity.Application.Functions.Students.Queries.GetStudentDetails;
 using eUniversity.Application.Functions.Students.Queries.GetStudentsList;
+using eUniversity.Application.Functions.Subjects.Queries.GetSubjectsList;
 using eUniversity.Application.Functions.Teachers.Commands.CreateTeacher;
 using eUniversity.Application.Functions.Teachers.Commands.UpdateTeacher;
 using eUniversity.Application.Functions.Teachers.Queries.GetTeacherDetails;
@@ -73,6 +76,15 @@ namespace eUniversity.Application.Mapper
                 .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Subject.Name))
                 .ForMember(dest => dest.DegreeName, opt => opt.MapFrom(src => src.Degree.Name))
                 .ForMember(dest => dest.SemesterName, opt => opt.MapFrom(src => src.Semester.Name));
+
+            // Degrees
+            CreateMap<Degree, DegreeDto>();
+
+            // Subjects
+            CreateMap<Subject, SubjectDto>();
+
+            // Semesters
+            CreateMap<Semester, SemesterDto>();
         }
     }
 }
