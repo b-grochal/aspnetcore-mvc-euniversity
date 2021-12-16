@@ -32,7 +32,13 @@ namespace eUniversity.Infrastructure
             services.AddScoped<IAuthService, AuthService>();
             
             services.AddScoped<IAdminRepository, AdminRepository>();
-            
+            services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IDegreeRepository, DegreeRepository>();
+            services.AddScoped<ISemesterRepository, SemesterRepository>();
+            services.AddScoped<ISubjectRepository, SubjectRepository>();
+
 
             return services;
         }
