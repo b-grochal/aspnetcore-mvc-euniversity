@@ -1,0 +1,70 @@
+﻿@model CoursesListViewModel
+
+<form asp-action="List" method="get" class="row">
+    <div class="col-6">
+        <input asp-for="SearchedName" class="form-control" placeholder="Name" />
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <input type="submit" value="Search" class="btn btn-primary w-25" />
+    </div>
+</form>
+<hr />
+<div class="row">
+    <div class="col-12">
+        @if (Model.Courses.Count() > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Courses.First().Name)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Courses.First().SubjectName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Courses.First().SemesterName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Courses.First().DegreeName)
+                            </th>
+                            <th class="d-flex justify-content-end">
+                                <a asp-controller="Admins" asp-action="Create" class="btn btn-primary">Create course</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var course in Model.Courses)
+                        {
+                        <tr>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => course.Name)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => course.SubjectName)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => course.SemesterName)
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(modelItem => course.DegreeName)
+                            </td>
+                            <td class="d-flex justify-content-end">
+                                <a asp-controller="Courses" asp-action="Edit" asp-route-adminid="@course.CourseId" class="btn btn-primary mr-1">Edit</a>
+                                <a asp-controller="Courses" asp-action="Details" asp-route-adminid="@course.CourseId" class="btn btn-primary mr-1">Details</a>
+                                <a asp-controller="Courses" asp-action="Delete" asp-route-adminid="@course.CourseId" class="btn btn-primary">Delete</a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No admins found</p>
+        }
+
+    </div>
+</div>
