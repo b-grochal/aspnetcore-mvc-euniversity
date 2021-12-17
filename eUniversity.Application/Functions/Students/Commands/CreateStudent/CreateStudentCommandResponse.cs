@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Application.Functions.Students.Commands.CreateStudent
 {
-    class CreateStudentCommandResponse : BaseResponse
+    public class CreateStudentCommandResponse : BaseResponse
     {
         public int? StudentId { get; set; }
 
