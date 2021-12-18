@@ -45,9 +45,9 @@
                                     @Html.DisplayFor(modelItem => teacher.UserName)
                                 </td>
                                 <td class="d-flex justify-content-end">
-                                    <a asp-controller="Admins" asp-action="Edit" asp-route-adminid="@teacher.TeacherId" class="btn btn-primary mr-1">Edit</a>
-                                    <a asp-controller="Admins" asp-action="Details" asp-route-adminid="@teacher.TeacherId" class="btn btn-primary mr-1">Details</a>
-                                    <a asp-controller="Admins" asp-action="Delete" asp-route-adminid="@teacher.TeacherId" class="btn btn-primary">Delete</a>
+                                    <a asp-controller="Teachers" asp-action="Edit" asp-route-teacherid="@teacher.TeacherId" class="btn btn-primary mr-1">Edit</a>
+                                    <a asp-controller="Teachers" asp-action="Details" asp-route-teacherid="@teacher.TeacherId" class="btn btn-primary mr-1">Details</a>
+                                    <a asp-controller="Teachers" asp-action="Delete" asp-route-teacherid="@teacher.TeacherId" class="btn btn-primary">Delete</a>
                                 </td>
                             </tr>
                         }
@@ -57,7 +57,7 @@
         }
         else
         {
-            <p>No admins found</p>
+            <p>No teachers found</p>
         }
 
     </div>
