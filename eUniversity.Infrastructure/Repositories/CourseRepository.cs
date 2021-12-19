@@ -17,6 +17,9 @@ namespace eUniversity.Infrastructure.Repositories
         {
             return await _dbContext.Courses
                 .Where(a => name == null || a.Name.Contains(name))
+                .Include(c => c.Semester)
+                .Include(c => c.Subject)
+                .Include(c => c.Degree)
                 .ToListAsync();
         }
     }

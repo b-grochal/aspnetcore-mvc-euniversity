@@ -9,6 +9,6 @@ namespace eUniversity.Domain.Enitities
     {
         public int GradeId { get; set; }
         public string Name { get; set; }
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<Enrollment> Enrollments { get; set; }
     }
 }

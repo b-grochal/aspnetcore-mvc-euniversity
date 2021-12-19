@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eUniversity.Infrastructure;
 
 namespace eUniversity.Infrastructure.Migrations
 {
     [DbContext(typeof(EUniversityContext))]
-    partial class EUniversityContextModelSnapshot : ModelSnapshot
+    [Migration("20211219161246_VirtualEntities")]
+    partial class VirtualEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
