@@ -1,6 +1,12 @@
 ﻿using AutoMapper;
+using eUniversity.Application.Functions.Admins.Commands.CreateAdmin;
+using eUniversity.Application.Functions.Admins.Commands.DeleteAdmin;
+using eUniversity.Application.Functions.Admins.Commands.UpdateAdmin;
+using eUniversity.Application.Functions.Admins.Queries.GetAdminDetail;
+using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.WebUI.Models.Admins;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace eUniversity.WebUI.Controllers
 {
+    [Authorize(Policy="isAdmin")]
     public class AdminsController : Controller
     {
         private readonly IMediator _mediator;
@@ -29,41 +36,102 @@ namespace eUniversity.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateAdminViewModel createAdminViewModel)
         {
-            return View();
+            if(!ModelState.IsValid)
+            {
+                return View(createAdminViewModel);
+            }
+
+            var createAdminCommand = _mapper.Map<CreateAdminCommand>(createAdminViewModel);
+            var response = await _mediator.Send(createAdminCommand);
+            
+            if (!response.Success)
+            {
+                response.ValidationErrors.ForEach(x => ModelState.AddModelError(x, x));
+                return View(createAdminViewModel);
+            }
+
+            return RedirectToAction(nameof(List));
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int adminId)
         {
-            return View();
+            var getAdminDetailQuery = new GetAdminDetailQuery
+            {
+                Id = adminId
+            };
+
+            var adminDetailsDto = await _mediator.Send(getAdminDetailQuery);
+            var adminDetailsViewModel = _mapper.Map<AdminDetailsViewModel>(adminDetailsDto);
+
+            return View(adminDetailsViewModel);
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int adminId)
         {
-            return View();
+            var getAdminDetailQuery = new GetAdminDetailQuery
+            {
+                Id = adminId
+            };
+
+            var adminDetailsDto = await _mediator.Send(getAdminDetailQuery);
+            var editAdminViewModel = _mapper.Map<EditAdminViewModel>(adminDetailsDto);
+
+            return View(editAdminViewModel);
         }
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int? id, EditAdminViewModel editAdminViewModel)
+        public async Task<IActionResult> EditPost(int adminId, EditAdminViewModel editAdminViewModel)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View(editAdminViewModel);
+            }
+
+            var updateAdminCommand = _mapper.Map<UpdateAdminCommand>(editAdminViewModel);
+            await _mediator.Send(updateAdminCommand);
+
+            return RedirectToAction(nameof(List));
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int adminId)
         {
-            return View();
+            var getAdminDetailQuery = new GetAdminDetailQuery
+            {
+                Id = adminId
+            };
+
+            var adminDetailsDto = await _mediator.Send(getAdminDetailQuery);
+            var adminViewModel = _mapper.Map<AdminViewModel>(adminDetailsDto);
+
+            return View(adminViewModel);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int? id)
+        public async Task<IActionResult> DeleteConfirmed(int adminId)
         {
-            return View();
+            var deleteAdminCommand = new DeleteAdminCommand
+            {
+                AdminId = adminId
+            };
+
+            await _mediator.Send(deleteAdminCommand);
+
+            return RedirectToAction(nameof(List));
         }
 
-        public IActionResult List(string searchedUsername)
+        public async Task<IActionResult> List(string searchedUsername)
         {
-            return View();
+            var getAdminsListQuery = new GetAdminsListQuery
+            {
+                SearchedUserName = searchedUsername
+            };
+
+            var adminsListDto = await _mediator.Send(getAdminsListQuery);
+            var adminsListViewModel = _mapper.Map<AdminsListViewModel>(adminsListDto);
+
+            return View(adminsListViewModel);
         }
     }
 }

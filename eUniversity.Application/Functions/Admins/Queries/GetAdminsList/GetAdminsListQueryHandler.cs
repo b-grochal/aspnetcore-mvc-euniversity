@@ -22,11 +22,11 @@ namespace eUniversity.Application.Functions.Admins.Queries.GetAdminsList
 
         public async Task<AdminsListDto> Handle(GetAdminsListQuery request, CancellationToken cancellationToken)
         {
-            var admins = await _adminRepository.GetAllAsync();
+            var admins = await _adminRepository.GetAllAsync(request.SearchedUserName);
             return new AdminsListDto
             {
                 Admins = _mapper.Map<List<AdminDto>>(admins),
-                SearchedUsername = request.SearchedUsername
+                SearchedUsername = request.SearchedUserName
             };
         }
     }

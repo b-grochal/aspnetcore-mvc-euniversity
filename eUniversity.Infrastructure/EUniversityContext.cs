@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -45,6 +46,11 @@ namespace eUniversity.Infrastructure
             return base.SaveChangesAsync(cancellationToken);
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -56,6 +62,10 @@ namespace eUniversity.Infrastructure
             modelBuilder.Entity<IdentityUserRole<int>>().ToTable("ApplicationUserRoles");
             modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
             modelBuilder.Entity<IdentityRole<int>>().ToTable("Roles");
+
+            modelBuilder.Entity<Admin>().Property(a => a.AdminId).ValueGeneratedNever();
+            modelBuilder.Entity<Student>().Property(s => s.StudentId).ValueGeneratedNever();
+            modelBuilder.Entity<Teacher>().Property(t => t.TeacherId).ValueGeneratedNever();
 
             var passwordHasher = new PasswordHasher<ApplicationUser>();
 

@@ -30,7 +30,7 @@ namespace eUniversity.Application.Functions.Admins.Commands.CreateAdmin
                 return new CreateAdminCommandResponse(validatorResult);
 
             var admin = _mapper.Map<Admin>(request);
-            admin = await _adminRepository.AddAsync(admin);
+            admin = await _adminRepository.AddAsync(admin, request.Password);
 
             return new CreateAdminCommandResponse(admin.AdminId);
         }

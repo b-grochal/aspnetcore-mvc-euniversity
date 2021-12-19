@@ -20,6 +20,7 @@ namespace eUniversity.Infrastructure.DummyData
                     FirstName = "David",
                     LastName = "Wallace",
                     Email = "daviwal123@euniversity.com",
+                    UserName = "daviwal123",
                     PhoneNumber = "123-456-789"
                 }
             };

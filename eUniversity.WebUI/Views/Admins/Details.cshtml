@@ -1,5 +1,62 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model AdminDetailsViewModel
+
+<h3>Details of admin</h3>
+<hr />
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="row">
+            <div class="col-6 font-weight-bold">
+                @Html.DisplayNameFor(model => model.AdminId)
+            </div>
+            <div class="col-6">
+                @Html.DisplayFor(model => model.AdminId)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 font-weight-bold">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </div>
+            <div class="col-6">
+                @Html.DisplayFor(model => model.FirstName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 font-weight-bold">
+                @Html.DisplayNameFor(model => model.LastName)
+            </div>
+            <div class="col-6">
+                @Html.DisplayFor(model => model.LastName)
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="row">
+            <div class="col-6 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Email)
+            </div>
+            <div class="col-6">
+                @Html.DisplayFor(model => model.Email)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 font-weight-bold">
+                @Html.DisplayNameFor(model => model.UserName)
+            </div>
+            <div class="col-6">
+                @Html.DisplayFor(model => model.UserName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 font-weight-bold">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </div>
+            <div class="col-6">
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="d-flex justify-content-end">
+    <a class="btn btn-primary ml-2" href="javascript:history.go(-1)">Back</a>
+</div>

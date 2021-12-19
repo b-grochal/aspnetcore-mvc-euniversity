@@ -1,0 +1,43 @@
+﻿@model EditCourseViewModel
+
+<h3>Edit course</h3>
+<hr />
+
+<form asp-controller="Courses" asp-action="Edit" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="CourseId" hidden>
+    <div class="form-row">
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="SubjectId" class="control-label"></label>
+            <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.Subjects"></select>
+            <span asp-validation-for="SubjectId" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="SemesterId" class="control-label"></label>
+            <select asp-for="SemesterId" class="form-control" asp-items="ViewBag.Semesters"></select>
+            <span asp-validation-for="SemesterId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="DegreeId" class="control-label"></label>
+            <select asp-for="DegreeId" class="form-control" asp-items="ViewBag.Degrees"></select>
+            <span asp-validation-for="DegreeId" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group d-flex justify-content-end">
+        <input type="submit" value="Create" class="btn btn-primary" />
+        <a class="btn btn-primary ml-2" asp-controller="Courses" asp-action="List">Cancel</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

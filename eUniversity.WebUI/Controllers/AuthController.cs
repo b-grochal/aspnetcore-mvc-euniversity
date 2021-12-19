@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using eUniversity.Application.Functions.Auth.Commands.Login;
+using eUniversity.Application.Functions.Auth.Commands.Logout;
 using eUniversity.WebUI.Models.Auth;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -39,11 +40,23 @@ namespace eUniversity.WebUI.Controllers
 
             if(!response.Success)
             {
+                ModelState.AddModelError(response.Message, response.Message);
                 response.ValidationErrors.ForEach(x => ModelState.AddModelError(x, x));
                 return View(loginViewModel);
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            var logoutCommand = new LogoutCommand();
+
+            await _mediator.Send(logoutCommand);
+
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

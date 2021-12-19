@@ -1,0 +1,64 @@
+﻿@model StudentsListViewModel
+
+<form asp-action="List" method="get" class="row">
+    <div class="col-6">
+        <input asp-for="SearchedUserName" class="form-control" placeholder="Username" />
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+        <input type="submit" value="Search" class="btn btn-primary w-25" />
+    </div>
+</form>
+<hr />
+<div class="row">
+    <div class="col-12">
+        @if (Model.Students.Count() > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Students.First().FirstName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Students.First().LastName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Students.First().UserName)
+                            </th>
+                            <th class="d-flex justify-content-end">
+                                <a asp-controller="Students" asp-action="Create" class="btn btn-primary">Create student</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var student in Model.Students)
+                        {
+                            <tr>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => student.FirstName)
+                                </td>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => student.LastName)
+                                </td>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => student.UserName)
+                                </td>
+                                <td class="d-flex justify-content-end">
+                                    <a asp-controller="Students" asp-action="Edit" asp-route-studentid="@student.StudentId" class="btn btn-primary mr-1">Edit</a>
+                                    <a asp-controller="Students" asp-action="Details" asp-route-studentid="@student.StudentId" class="btn btn-primary mr-1">Details</a>
+                                    <a asp-controller="Students" asp-action="Delete" asp-route-studentid="@student.StudentId" class="btn btn-primary">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No students found</p>
+        }
+
+    </div>
+</div>

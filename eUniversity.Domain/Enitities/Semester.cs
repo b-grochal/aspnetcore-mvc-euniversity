@@ -9,6 +9,6 @@ namespace eUniversity.Domain.Enitities
     {
         public int SemesterId { get; set; }
         public string Name { get; set; }
-        public ICollection<Semester> Semesters { get; set; }
+        public virtual ICollection<Semester> Semesters { get; set; }
     }
 }

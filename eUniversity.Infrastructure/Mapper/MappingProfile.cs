@@ -14,7 +14,13 @@ namespace eUniversity.Infrastructure.Mapper
         public MappingProfile()
         {
             CreateMap<Admin, ApplicationUser>()
-                .ReverseMap();
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.AdminId));
+
+            CreateMap<Student, ApplicationUser>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.StudentId));
+
+            CreateMap<Teacher, ApplicationUser>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.TeacherId));
         }
     }
 }

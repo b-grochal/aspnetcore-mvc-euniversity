@@ -10,8 +10,8 @@ using eUniversity.Infrastructure;
 namespace eUniversity.Infrastructure.Migrations
 {
     [DbContext(typeof(EUniversityContext))]
-    [Migration("20211126234123_Init")]
-    partial class Init
+    [Migration("20211206235012_EditUsers")]
+    partial class EditUsers
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,21 +53,21 @@ namespace eUniversity.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2e4e5abf-2c41-463a-b0c2-54c8683cba0b",
+                            ConcurrencyStamp = "b7700785-3e75-4337-b09c-1d413ef746e5",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "8f55c45a-5e76-46ed-8157-3606abc7b214",
+                            ConcurrencyStamp = "64ea6191-7375-4f6f-8671-9f17cda44c56",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "233cb3ee-4ef6-48e7-bf53-9bf4c9865b86",
+                            ConcurrencyStamp = "efc70755-56bd-419e-8339-4f20cf86733c",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         });
@@ -194,9 +194,7 @@ namespace eUniversity.Infrastructure.Migrations
             modelBuilder.Entity("eUniversity.Domain.Enitities.Admin", b =>
                 {
                     b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -222,6 +220,9 @@ namespace eUniversity.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("AdminId");
 
                     b.ToTable("Admins");
@@ -234,7 +235,8 @@ namespace eUniversity.Infrastructure.Migrations
                             Email = "daviwal123@euniversity.com",
                             FirstName = "David",
                             LastName = "Wallace",
-                            PhoneNumber = "123-456-789"
+                            PhoneNumber = "123-456-789",
+                            UserName = "daviwal123"
                         });
                 });
 
@@ -289,7 +291,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 2,
                             Name = "Computer programming",
-                            PasswordHash = "$2a$11$4j6PdHPcd6bH76a/lXJSF.wz1JrzNsaO3wFnmSBj1Z4hwUsfZ7miW",
+                            PasswordHash = "$2a$11$JxrfBUOw7h9scUfZCpgXg.l0Q5VnZQnWEFVdkhJSCkcexuC3ocjzi",
                             SemesterId = 1,
                             SubjectId = 1
                         },
@@ -299,7 +301,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 2,
                             Name = "Chemistry",
-                            PasswordHash = "$2a$11$.PC14qNh5.vlKSnz9cYrbuEL6EzW8grrhowYsGCmAor3YswthCsl.",
+                            PasswordHash = "$2a$11$9.2o0vKPriWjN2eKt/2l/.kYVS/PX3K1TG2U0Mi3xUTG4TJDDTF7S",
                             SemesterId = 2,
                             SubjectId = 2
                         },
@@ -309,7 +311,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 1,
                             Name = "Astronomy",
-                            PasswordHash = "$2a$11$NL8u7x7lNhmIAFsFR6/8u.NqIdCCrWpMaWYOB/pM2ISfAw.uAX87S",
+                            PasswordHash = "$2a$11$Ly1xO/uUO1iMMeI2LCYMLOBwdYMtY8.c8Cfr.alYw85zBibrk4sNu",
                             SemesterId = 2,
                             SubjectId = 3
                         },
@@ -319,7 +321,7 @@ namespace eUniversity.Infrastructure.Migrations
                             CreatedDate = new DateTimeOffset(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 0, 0, 0, 0)),
                             DegreeId = 3,
                             Name = "Linear algebry",
-                            PasswordHash = "$2a$11$1J4KkRB69nXRtfrvvlg2fOgzcYtCydnqguCctl49izcBW8xCnQne6",
+                            PasswordHash = "$2a$11$N69ReKQAvhXECc0ewAHDqu9RErcYFzIXiJHh9rAeD/4sjhD2qm07m",
                             SemesterId = 1,
                             SubjectId = 4
                         });
@@ -577,9 +579,7 @@ namespace eUniversity.Infrastructure.Migrations
             modelBuilder.Entity("eUniversity.Domain.Enitities.Student", b =>
                 {
                     b.Property<int>("StudentId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -605,6 +605,9 @@ namespace eUniversity.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
@@ -617,7 +620,8 @@ namespace eUniversity.Infrastructure.Migrations
                             Email = "dwigsch123@euniversity.com",
                             FirstName = "Dwight",
                             LastName = "Schrute",
-                            PhoneNumber = "123-456-789"
+                            PhoneNumber = "123-456-789",
+                            UserName = "dwigsch123"
                         });
                 });
 
@@ -677,9 +681,7 @@ namespace eUniversity.Infrastructure.Migrations
             modelBuilder.Entity("eUniversity.Domain.Enitities.Teacher", b =>
                 {
                     b.Property<int>("TeacherId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -705,6 +707,9 @@ namespace eUniversity.Infrastructure.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("TeacherId");
 
                     b.ToTable("Teachers");
@@ -717,7 +722,8 @@ namespace eUniversity.Infrastructure.Migrations
                             Email = "michsco123@euniversity.com",
                             FirstName = "Michael",
                             LastName = "Scott",
-                            PhoneNumber = "123-456-789"
+                            PhoneNumber = "123-456-789",
+                            UserName = "michsco123"
                         });
                 });
 
@@ -798,7 +804,7 @@ namespace eUniversity.Infrastructure.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "65d7b1f6-1a69-4777-894e-6ecaffb4591c",
+                            ConcurrencyStamp = "a6a03b22-d3d8-45af-9640-f25cba6d1fb6",
                             Email = "daviwal123@euniversity.com",
                             EmailConfirmed = true,
                             FirstName = "David",
@@ -806,10 +812,10 @@ namespace eUniversity.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DAVIWAL123@EUNIVERSITY.COM",
                             NormalizedUserName = "DAVIWAL123",
-                            PasswordHash = "AQAAAAEAACcQAAAAENhgwADP84cFISa2AsPh5SxZZJWbJtLLHpll6xMnC2CHMXd6EDpQ6n2lt0A026KZkg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEFjF3tmmw5q1hHNLULw8ROrsZ4WfQV8DUBRatotlAtAbUrTX20EtDLdXDIH9MSkqhQ==",
                             PhoneNumber = "123-456-789",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "753459e6-b901-4a0f-8afb-7078d40727e0",
+                            SecurityStamp = "dd7a096a-14d0-47a1-95d5-412a6a856e1d",
                             TwoFactorEnabled = false,
                             UserName = "daviwal123"
                         },
@@ -817,7 +823,7 @@ namespace eUniversity.Infrastructure.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aa012e24-9c79-49a1-8266-403c0548aa21",
+                            ConcurrencyStamp = "8be93132-a11c-4c72-815c-7dcc635eb7ef",
                             Email = "michsco123@euniversity.com",
                             EmailConfirmed = true,
                             FirstName = "Michael",
@@ -825,10 +831,10 @@ namespace eUniversity.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "MICHSCO123@EUNIVERSITY.COM",
                             NormalizedUserName = "MICHSCO123",
-                            PasswordHash = "AQAAAAEAACcQAAAAEOhS25u8P8y0SfLqiXCwHRH22Kt8S3HbTMsv1V6zj5u69pKVuSAMEZSQzWK6hqj1kw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIzffe5AqQ7VwMZOl5X6zsRkX/qC0/D3mh6Y5H1ozNsUUhZCGFKR9MggjwaawBQVNw==",
                             PhoneNumber = "123-456-789",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "41e3aac5-1630-4f68-9a9a-9eaecae11470",
+                            SecurityStamp = "a2f618af-6336-472e-be1c-5465a416f999",
                             TwoFactorEnabled = false,
                             UserName = "michsco123"
                         },
@@ -836,7 +842,7 @@ namespace eUniversity.Infrastructure.Migrations
                         {
                             Id = 3,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2787ffc3-c1d4-456f-81d5-4eadd686fc61",
+                            ConcurrencyStamp = "c5e3f6ab-2a46-43ac-a989-96db722e54db",
                             Email = "dwigsch123@euniversity.com",
                             EmailConfirmed = true,
                             FirstName = "Dwight",
@@ -844,10 +850,10 @@ namespace eUniversity.Infrastructure.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "DWIGSCH123@EUNIVERSITY.COM",
                             NormalizedUserName = "DWIGSCH123",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEd/etaQqAX1hLGr22bsECqhXPbvBBywAHqEi1NeQ3/su+QU+ffADDeTorpi40MEIA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPzSb5AE3yAjkpxtCv3/t0uqrEmcYwXlTDiJEoXndeDwAekIxZxmjw9O0Bj3wOhI0A==",
                             PhoneNumber = "123-456-789",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "605119ee-2828-4f48-a3c9-80e253e5cfa3",
+                            SecurityStamp = "650a2193-d591-4c3c-8bfe-a1e1f5fc5fba",
                             TwoFactorEnabled = false,
                             UserName = "dwigsch123"
                         });
