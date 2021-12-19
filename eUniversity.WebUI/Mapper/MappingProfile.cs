@@ -65,6 +65,8 @@ namespace eUniversity.WebUI.Mapper
             CreateMap<EditCourseViewModel, UpdateCourseCommand>();
             CreateMap<CourseDto, CourseViewModel>();
             CreateMap<CoursesListDto, CoursesListViewModel>();
+
+            CreateMap<EnrollmentDto, EnrollmentViewModel>();
         }
     }
 }

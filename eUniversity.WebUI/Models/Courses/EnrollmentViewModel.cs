@@ -8,6 +8,8 @@ namespace eUniversity.WebUI.Models.Courses
 {
     public class EnrollmentViewModel
     {
+        public int EnrollmentId { get; set; }
+
         [DisplayName("Name")]
         public string StudentFullName { get; set; }
         

@@ -5,14 +5,59 @@
 <div class="container">
     <div class="row">
         <div class="col-3">
-            <div>
-                @Html.DisplayFor(model => model.SubjectName)
-                @Html.DisplayFor(model => model.DegreeName)
-                @Html.DisplayFor(model => model.SemesterName)
+            <div class="border rounded p-1">
+                <p class="font-weight-bold">@Html.DisplayFor(model => model.SubjectName)</p>
+                <p class="font-weight-bold">@Html.DisplayFor(model => model.DegreeName)</p>
+                <p class="font-weight-bold">@Html.DisplayFor(model => model.SemesterName)</p>
             </div>
         </div>
         <div class="col-9">
-
+            @if (Model.Enrollments.Count() > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="align-middle">
+                                    @Html.DisplayNameFor(model => model.Enrollments.First().StudentFullName)
+                                </th>
+                                <th class="align-middle">
+                                    @Html.DisplayNameFor(model => model.Enrollments.First().StudentUsername)
+                                </th>
+                                <th class="align-middle">
+                                    @Html.DisplayNameFor(model => model.Enrollments.First().GradeName)
+                                </th>
+                                <th class="align-middle text-right">
+                                    Actions
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var enrollment in Model.Enrollments)
+                            {
+                                <tr>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => enrollment.StudentFullName)
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => enrollment.StudentUsername)
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => enrollment.GradeName)
+                                    </td>
+                                    <td class="d-flex justify-content-end">
+                                        <a asp-controller="Courses" asp-action="Edit" asp-route-courseid="@enrollment.EnrollmentId" class="btn btn-primary mr-1">Edit</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p>No enrollments found</p>
+            }
         </div>
     </div>
 </div>
