@@ -99,11 +99,11 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction(nameof(List));
         }
 
-        public async Task<IActionResult> Delete(int studentId)
+        public async Task<IActionResult> Delete(int courseId)
         {
             var getCourseDetailsQuery = new GetCourseDetailsQuery
             {
-                Id = studentId
+                Id = courseId
             };
 
             var courseDetailsDto = await _mediator.Send(getCourseDetailsQuery);
