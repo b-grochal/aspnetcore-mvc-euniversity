@@ -25,17 +25,17 @@
     <div class="form-row">
         <div class="form-group col-12 col-md-4">
             <label asp-for="SubjectId" class="control-label"></label>
-            <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.Subjects" disabled></select>
+            <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.Subjects"></select>
             <span asp-validation-for="SubjectId" class="text-danger"></span>
         </div>
         <div class="form-group col-12 col-md-4">
             <label asp-for="SemesterId" class="control-label"></label>
-            <select asp-for="SemesterId" class="form-control" asp-items="ViewBag.Semesters" disabled></select>
+            <select asp-for="SemesterId" class="form-control" asp-items="ViewBag.Semesters"></select>
             <span asp-validation-for="SemesterId" class="text-danger"></span>
         </div>
         <div class="form-group col-12 col-md-4">
             <label asp-for="DegreeId" class="control-label"></label>
-            <select asp-for="DegreeId" class="form-control" asp-items="ViewBag.Degrees" disabled></select>
+            <select asp-for="DegreeId" class="form-control" asp-items="ViewBag.Degrees"></select>
             <span asp-validation-for="DegreeId" class="text-danger"></span>
         </div>
     </div>

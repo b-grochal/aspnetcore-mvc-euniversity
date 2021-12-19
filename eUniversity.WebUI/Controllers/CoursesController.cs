@@ -4,9 +4,13 @@ using eUniversity.Application.Functions.Courses.Commands.DeleteCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
+using eUniversity.Application.Functions.Degrees.Queries.GetDegreesList;
+using eUniversity.Application.Functions.Semesters.Queries.GetSemestersList;
+using eUniversity.Application.Functions.Subjects.Queries.GetSubjectsList;
 using eUniversity.WebUI.Models.Courses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +31,7 @@ namespace eUniversity.WebUI.Controllers
 
         public async Task<IActionResult> Create()
         {
+            await PopulateCreateFormSelectElements();
             return View();
         }
 
@@ -73,6 +78,8 @@ namespace eUniversity.WebUI.Controllers
 
             var courseDetailsDto = await _mediator.Send(getCourseDetailsQuery);
             var editCourseViewModel = _mapper.Map<EditCourseViewModel>(courseDetailsDto);
+
+            await PopulateEditFormSelectElements(editCourseViewModel.DegreeId, editCourseViewModel.SemesterId, editCourseViewModel.SubjectId);
 
             return View(editCourseViewModel);
         }
@@ -130,6 +137,36 @@ namespace eUniversity.WebUI.Controllers
             var coursesListViewModel = _mapper.Map<CoursesListViewModel>(coursesListDto);
 
             return View(coursesListViewModel);
+        }
+
+        private async Task PopulateCreateFormSelectElements()
+        {
+            var getDegreesListQuery = new GetDegreesListQuery();
+            var getSemestersListQuery = new GetSemestersListQuery();
+            var getSubjectsListQuery = new GetSubjectsListQuery();
+            
+            var degrees = await _mediator.Send(getDegreesListQuery);
+            var semesters = await _mediator.Send(getSemestersListQuery);
+            var subjects = await _mediator.Send(getSubjectsListQuery);
+
+            ViewData["Degrees"] = new SelectList(degrees.Degrees, "DegreeId", "Name");
+            ViewData["Semesters"] = new SelectList(semesters.Semesters, "SemesterId", "Name");
+            ViewData["Subjects"] = new SelectList(subjects.Subjects, "SubjectId", "Name");
+        }
+
+        private async Task PopulateEditFormSelectElements(int degreeId, int semesterId, int subjectId)
+        {
+            var getDegreesListQuery = new GetDegreesListQuery();
+            var getSemestersListQuery = new GetSemestersListQuery();
+            var getSubjectsListQuery = new GetSubjectsListQuery();
+
+            var degrees = await _mediator.Send(getDegreesListQuery);
+            var semesters = await _mediator.Send(getSemestersListQuery);
+            var subjects = await _mediator.Send(getSubjectsListQuery);
+
+            ViewData["Degrees"] = new SelectList(degrees.Degrees, "DegreeId", "Name", degreeId);
+            ViewData["Semesters"] = new SelectList(semesters.Semesters, "SemesterId", "Name", semesterId);
+            ViewData["Subjects"] = new SelectList(subjects.Subjects, "SubjectId", "Name", subjectId);
         }
     }
 }
