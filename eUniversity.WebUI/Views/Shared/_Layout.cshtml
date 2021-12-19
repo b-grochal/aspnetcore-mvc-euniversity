@@ -54,7 +54,9 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <form class="form-inline" asp-controller="Auth" asp-action="Logout">
+                                        <button type="submit" class="btn dropdown-item">Logout</button>
+                                    </form>
                                 </div>
                             </li>
                         </ul>

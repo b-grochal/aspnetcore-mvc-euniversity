@@ -23,5 +23,10 @@ namespace eUniversity.Infrastructure.Services
             var result = await _signInManager.PasswordSignInAsync(userName, password, true, false);
             return result.Succeeded;
         }
+
+        public async Task Logout()
+        {
+            await _signInManager.SignOutAsync();
+        }
     }
 }
