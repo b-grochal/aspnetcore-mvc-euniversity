@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace eUniversity.Infrastructure.Repositories
 {
-    public class CourseRepository : BaseRepository<Course>, ICourseRepository
+    public class EnrollmentRepository : BaseRepository<Enrollment>, IEnrollmentRepository
     {
-        public CourseRepository(EUniversityContext eUniversityContext) : base(eUniversityContext) { }
+        public EnrollmentRepository(EUniversityContext eUniversityContext) : base(eUniversityContext) { }
 
-        public async Task<IReadOnlyList<Course>> GetAllAsync(string name)
+        public async Task<IReadOnlyList<Enrollment>> GetAllAsync(int studentId)
         {
-            return await _dbContext.Courses
-                .Where(a => name == null || a.Name.Contains(name))
+            return await _dbContext.Enrollments
+                .Where(e =>  e.StudentId == studentId)
                 .ToListAsync();
         }
     }

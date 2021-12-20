@@ -4,6 +4,7 @@ using eUniversity.Application.Functions.Courses.Commands.DeleteCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
+using eUniversity.Application.Functions.Courses.Queries.GetCoursesListForStudent;
 using eUniversity.Application.Functions.Degrees.Queries.GetDegreesList;
 using eUniversity.Application.Functions.Semesters.Queries.GetSemestersList;
 using eUniversity.Application.Functions.Subjects.Queries.GetSubjectsList;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace eUniversity.WebUI.Controllers
@@ -135,6 +137,20 @@ namespace eUniversity.WebUI.Controllers
 
             var coursesListDto = await _mediator.Send(getCoursesListQuery);
             var coursesListViewModel = _mapper.Map<CoursesListViewModel>(coursesListDto);
+
+            return View(coursesListViewModel);
+        }
+
+        public async Task<IActionResult> ListForStudent(string searchedName)
+        {
+            var getCoursesListForStudentQuery = new GetCoursesListForStudentQuery
+            {
+                SearchedName = searchedName,
+                StudentId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier))
+            };
+
+            var coursesListForStudenDto = await _mediator.Send(getCoursesListForStudentQuery);
+            var coursesListViewModel = _mapper.Map<CoursesListForStudentViewModel>(coursesListForStudenDto);
 
             return View(coursesListViewModel);
         }

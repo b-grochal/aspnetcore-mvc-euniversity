@@ -8,6 +8,7 @@ using eUniversity.Application.Functions.Courses.Commands.CreateCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
+using eUniversity.Application.Functions.Courses.Queries.GetCoursesListForStudent;
 using eUniversity.Application.Functions.Students.Commands.CreateStudent;
 using eUniversity.Application.Functions.Students.Commands.UpdateStudent;
 using eUniversity.Application.Functions.Students.Queries.GetStudentDetails;
@@ -65,6 +66,8 @@ namespace eUniversity.WebUI.Mapper
             CreateMap<EditCourseViewModel, UpdateCourseCommand>();
             CreateMap<CourseDto, CourseViewModel>();
             CreateMap<CoursesListDto, CoursesListViewModel>();
+            CreateMap<CourseForStudentDto, CourseForStudentViewModel>();
+            CreateMap<CoursesListForStudentDto, CoursesListForStudentViewModel>();
 
             CreateMap<EnrollmentDto, EnrollmentViewModel>();
         }

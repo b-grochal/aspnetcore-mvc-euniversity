@@ -35,6 +35,7 @@ namespace eUniversity.Infrastructure
             services.AddScoped<ITeacherRepository, TeacherRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
+            services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
             services.AddScoped<IDegreeRepository, DegreeRepository>();
             services.AddScoped<ISemesterRepository, SemesterRepository>();
             services.AddScoped<ISubjectRepository, SubjectRepository>();
