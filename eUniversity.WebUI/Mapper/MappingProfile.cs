@@ -9,6 +9,7 @@ using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesListForStudent;
+using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentsListForStudent;
 using eUniversity.Application.Functions.Students.Commands.CreateStudent;
 using eUniversity.Application.Functions.Students.Commands.UpdateStudent;
 using eUniversity.Application.Functions.Students.Queries.GetStudentDetails;
@@ -20,6 +21,7 @@ using eUniversity.Application.Functions.Teachers.Queries.GetTeachersList;
 using eUniversity.WebUI.Models.Admins;
 using eUniversity.WebUI.Models.Auth;
 using eUniversity.WebUI.Models.Courses;
+using eUniversity.WebUI.Models.Enrollments;
 using eUniversity.WebUI.Models.Students;
 using eUniversity.WebUI.Models.Teachers;
 using System;
@@ -70,6 +72,8 @@ namespace eUniversity.WebUI.Mapper
             CreateMap<CoursesListForStudentDto, CoursesListForStudentViewModel>();
 
             CreateMap<EnrollmentDto, EnrollmentViewModel>();
+            CreateMap<EnrollmentForStudentDto, EnrollmentForStudentViewModel>();
+            CreateMap<EnrollmentsListForStudentDto, EnrollmentsListForStudentViewModel>();
         }
     }
 }

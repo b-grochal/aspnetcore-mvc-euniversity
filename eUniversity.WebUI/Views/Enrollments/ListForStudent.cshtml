@@ -1,0 +1,61 @@
+﻿@model EnrollmentsListForStudentViewModel
+
+<h3>My enrollments</h3>
+<hr />
+<div class="row">
+    <div class="col-12">
+        @if (Model.Enrollments.Count() > 0)
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Enrollments.First().CourseName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Enrollments.First().SemesterName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Enrollments.First().SubjectName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Enrollments.First().DegreeName)
+                            </th>
+                            <th class="align-middle">
+                                @Html.DisplayNameFor(model => model.Enrollments.First().GradeName)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var enrollment in Model.Enrollments)
+                        {
+                            <tr>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => enrollment.CourseName)
+                                </td>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => enrollment.SemesterName)
+                                </td>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => enrollment.SubjectName)
+                                </td>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => enrollment.DegreeName)
+                                </td>
+                                <td class="align-middle">
+                                    @Html.DisplayFor(modelItem => enrollment.GradeName)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <p>No admins found</p>
+        }
+
+    </div>
+</div>
