@@ -5,6 +5,7 @@ using eUniversity.Application.Functions.Admins.Queries.GetAdminDetail;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.Application.Functions.Auth.Commands.Login;
 using eUniversity.Application.Functions.Courses.Commands.CreateCourse;
+using eUniversity.Application.Functions.Courses.Commands.EnrollOnCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
@@ -70,6 +71,9 @@ namespace eUniversity.WebUI.Mapper
             CreateMap<CoursesListDto, CoursesListViewModel>();
             CreateMap<CourseForStudentDto, CourseForStudentViewModel>();
             CreateMap<CoursesListForStudentDto, CoursesListForStudentViewModel>();
+            CreateMap<CourseDetailsDto, EnrollOnCourseViewModel>()
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Name));
+            CreateMap<EnrollOnCourseViewModel, EnrollOnCourseCommand>();
 
             CreateMap<EnrollmentDto, EnrollmentViewModel>();
             CreateMap<EnrollmentForStudentDto, EnrollmentForStudentViewModel>();

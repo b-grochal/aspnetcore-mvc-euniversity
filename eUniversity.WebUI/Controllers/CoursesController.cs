@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eUniversity.Application.Functions.Courses.Commands.CreateCourse;
 using eUniversity.Application.Functions.Courses.Commands.DeleteCourse;
+using eUniversity.Application.Functions.Courses.Commands.EnrollOnCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
@@ -153,6 +154,41 @@ namespace eUniversity.WebUI.Controllers
             var coursesListViewModel = _mapper.Map<CoursesListForStudentViewModel>(coursesListForStudenDto);
 
             return View(coursesListViewModel);
+        }
+
+        public async Task<IActionResult> EnrollOnCourse(int courseId)
+        {
+            var getCourseDetailsQuery = new GetCourseDetailsQuery
+            {
+                Id = courseId
+            };
+
+            var courseDetailsDto = await _mediator.Send(getCourseDetailsQuery);
+            var enrollOnCourseViewModel = _mapper.Map<EnrollOnCourseViewModel>(courseDetailsDto);
+
+            return View(enrollOnCourseViewModel);
+        }
+
+        [HttpPost, ActionName("EnrollOnCourse")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EnrollOnCoursePost(int courseId, EnrollOnCourseViewModel enrollOnCourseViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(enrollOnCourseViewModel);
+            }
+
+            var enrollOnCourseCommand = _mapper.Map<EnrollOnCourseCommand>(enrollOnCourseViewModel);
+            enrollOnCourseCommand.StudentId = Convert.ToInt32(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            var response = await _mediator.Send(enrollOnCourseCommand);
+
+            if (!response.Success)
+            {
+                ModelState.AddModelError(response.Message, response.Message);
+                return View(enrollOnCourseViewModel);
+            }
+
+            return RedirectToAction(nameof(ListForStudent));
         }
 
         private async Task PopulateCreateFormSelectElements()

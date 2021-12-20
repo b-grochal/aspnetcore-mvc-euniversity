@@ -53,10 +53,10 @@
                                 <td class="d-flex justify-content-end">
                                     @if (!course.IsEnrolled)
                                     {
-                                        <a asp-controller="Courses" asp-action="Edit" asp-route-courseid="@course.CourseId" class="btn btn-primary mr-1">Enroll</a>
+                                        <a asp-controller="Courses" asp-action="EnrollOnCourse" asp-route-courseid="@course.CourseId" class="btn btn-primary mr-1">Enroll</a>
                                     } else 
                                     {
-                                        <a asp-controller="Courses" asp-action="Edit" asp-route-courseid="@course.CourseId" class="btn btn-primary mr-1 disabled">Enrolled</a>
+                                        <a asp-controller="Courses" asp-action="EnrollOnCourse" asp-route-courseid="@course.CourseId" class="btn btn-primary mr-1 disabled">Enrolled</a>
                                     }
                                 </td>
                             </tr>

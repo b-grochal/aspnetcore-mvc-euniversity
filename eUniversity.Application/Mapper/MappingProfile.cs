@@ -4,6 +4,7 @@ using eUniversity.Application.Functions.Admins.Commands.UpdateAdmin;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminDetail;
 using eUniversity.Application.Functions.Admins.Queries.GetAdminsList;
 using eUniversity.Application.Functions.Courses.Commands.CreateCourse;
+using eUniversity.Application.Functions.Courses.Commands.EnrollOnCourse;
 using eUniversity.Application.Functions.Courses.Commands.UpdateCourse;
 using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
@@ -100,6 +101,8 @@ namespace eUniversity.Application.Mapper
                  .ForMember(dest => dest.SubjectName, opt => opt.MapFrom(src => src.Course.Subject.Name))
                  .ForMember(dest => dest.DegreeName, opt => opt.MapFrom(src => src.Course.Degree.Name))
                  .ForMember(dest => dest.GradeName, opt => opt.MapFrom(src => src.Grade.Name));
+
+            CreateMap<EnrollOnCourseCommand, Enrollment>();
         }
     }
 }
