@@ -22,6 +22,34 @@ namespace eUniversity.WebUI.Controllers
             _mapper = mapper;
         }
 
+        public async Task<IActionResult> Edit(int enrollmentId)
+        {
+            var getEnrollmentDetailQuery = new GetAdminDetailQuery
+            {
+                Id = enrollmentId
+            };
+
+            var adminDetailsDto = await _mediator.Send(getEnrollmentDetailQuery);
+            var editAdminViewModel = _mapper.Map<EditAdminViewModel>(adminDetailsDto);
+
+            return View(editAdminViewModel);
+        }
+
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPost(int adminId, EditAdminViewModel editAdminViewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(editAdminViewModel);
+            }
+
+            var updateAdminCommand = _mapper.Map<UpdateAdminCommand>(editAdminViewModel);
+            await _mediator.Send(updateAdminCommand);
+
+            return RedirectToAction(nameof(List));
+        }
+
         public async Task<IActionResult> ListForStudent()
         {
             var getEnrollmentsListForStudentQuery = new GetEnrollmentsListForStudentQuery

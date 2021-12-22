@@ -10,6 +10,7 @@ using eUniversity.Application.Functions.Courses.Queries.GetCourseDetails;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesList;
 using eUniversity.Application.Functions.Courses.Queries.GetCoursesListForStudent;
 using eUniversity.Application.Functions.Degrees.Queries.GetDegreesList;
+using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentDetails;
 using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentsListForStudent;
 using eUniversity.Application.Functions.Semesters.Queries.GetSemestersList;
 using eUniversity.Application.Functions.Students.Commands.CreateStudent;
@@ -103,6 +104,13 @@ namespace eUniversity.Application.Mapper
                  .ForMember(dest => dest.GradeName, opt => opt.MapFrom(src => src.Grade.Name));
 
             CreateMap<EnrollOnCourseCommand, Enrollment>();
+
+            CreateMap<Enrollment, EnrollmentDetailsDto>()
+                .ForMember(dest => dest.StudentFirstName, opt => opt.MapFrom(src => src.Student.FirstName))
+                .ForMember(dest => dest.StudentLastName, opt => opt.MapFrom(src => src.Student.LastName))
+                .ForMember(dest => dest.StudentUsername, opt => opt.MapFrom(src => src.Student.UserName))
+                .ForMember(dest => dest.GradeName, opt => opt.MapFrom(src => src.Grade.Name))
+                .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.Name));
         }
     }
 }
