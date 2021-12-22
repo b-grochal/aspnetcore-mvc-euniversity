@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Functions\Enrollments\Commands\UpdateEnrollment\" />
     <Folder Include="Functions\Grades\" />
   </ItemGroup>
 
