@@ -18,8 +18,4 @@
     <ProjectReference Include="..\eUniversity.Domain\eUniversity.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Functions\Grades\" />
-  </ItemGroup>
-
 </Project>

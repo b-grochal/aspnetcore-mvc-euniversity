@@ -96,6 +96,9 @@ namespace eUniversity.Application.Mapper
             // Semesters
             CreateMap<Semester, SemesterDto>();
 
+            // Grades
+            CreateMap<Grade, GradeDto>();
+
             // Enrolments
             CreateMap<Enrollment, EnrollmentForStudentDto>()
                  .ForMember(dest => dest.CourseName, opt => opt.MapFrom(src => src.Course.Name))

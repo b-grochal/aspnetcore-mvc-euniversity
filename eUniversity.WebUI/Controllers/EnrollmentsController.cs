@@ -1,8 +1,13 @@
 ﻿using AutoMapper;
+using eUniversity.Application.Functions.Enrollments.Commands.DeleteEnrollment;
+using eUniversity.Application.Functions.Enrollments.Commands.UpdateEnrollment;
+using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentDetails;
 using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentsListForStudent;
+using eUniversity.Application.Functions.Grades.Queries.GetGradesList;
 using eUniversity.WebUI.Models.Enrollments;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,30 +29,59 @@ namespace eUniversity.WebUI.Controllers
 
         public async Task<IActionResult> Edit(int enrollmentId)
         {
-            var getEnrollmentDetailQuery = new GetAdminDetailQuery
+            var getEnrollmentDetailsQuery = new GetEnrollmentDetailsQuery
             {
                 Id = enrollmentId
             };
 
-            var adminDetailsDto = await _mediator.Send(getEnrollmentDetailQuery);
-            var editAdminViewModel = _mapper.Map<EditAdminViewModel>(adminDetailsDto);
+            var enrollmentDetailsDto = await _mediator.Send(getEnrollmentDetailsQuery);
+            var editEnrollmentViewModel = _mapper.Map<EditEnrollmentViewModel>(enrollmentDetailsDto);
 
-            return View(editAdminViewModel);
+            await PopulateEditFormSelectElements();
+
+            return View(editEnrollmentViewModel);
         }
 
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditPost(int adminId, EditAdminViewModel editAdminViewModel)
+        public async Task<IActionResult> EditEnrollment(int enrollmentId, EditEnrollmentViewModel editEnrollmentViewModel)
         {
             if (!ModelState.IsValid)
             {
-                return View(editAdminViewModel);
+                return View(editEnrollmentViewModel);
             }
 
-            var updateAdminCommand = _mapper.Map<UpdateAdminCommand>(editAdminViewModel);
-            await _mediator.Send(updateAdminCommand);
+            var updateEnrollmentCommand = _mapper.Map<UpdateEnrollmentCommand>(editEnrollmentViewModel);
+            await _mediator.Send(updateEnrollmentCommand);
 
-            return RedirectToAction(nameof(List));
+            return RedirectToAction("List", "Courses");
+        }
+
+        public async Task<IActionResult> Delete(int enrollment)
+        {
+            var getEnrollmentDetailsQuery = new GetEnrollmentDetailsQuery
+            {
+                Id = enrollment
+            };
+
+            var enrollmentDetailsDto = await _mediator.Send(getEnrollmentDetailsQuery);
+            var enrollmentDetailsViewModel = _mapper.Map<EnrollmentDetailsViewModel>(enrollmentDetailsDto);
+
+            return View(enrollmentDetailsViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int enrollmentId)
+        {
+            var deleteEnrollmentCommand = new DeleteEnrollmentCommand
+            {
+                EnrollmentId = enrollmentId
+            };
+
+            await _mediator.Send(deleteEnrollmentCommand);
+
+            return RedirectToAction("List", "Courses");
         }
 
         public async Task<IActionResult> ListForStudent()
@@ -61,6 +95,15 @@ namespace eUniversity.WebUI.Controllers
             var enrollmentsListViewModel = _mapper.Map<EnrollmentsListForStudentViewModel>(enrollmentsListForStudenDto);
 
             return View(enrollmentsListViewModel);
+        }
+
+        private async Task PopulateEditFormSelectElements()
+        {
+            var getGradesListQuery = new GetGradesListQuery();
+
+            var grades = await _mediator.Send(getGradesListQuery);
+
+            ViewData["Grades"] = new SelectList(grades.Grades, "GradeId", "Name");
         }
     }
 }
