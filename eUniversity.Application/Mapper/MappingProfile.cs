@@ -13,6 +13,7 @@ using eUniversity.Application.Functions.Degrees.Queries.GetDegreesList;
 using eUniversity.Application.Functions.Enrollments.Commands.UpdateEnrollment;
 using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentDetails;
 using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentsListForStudent;
+using eUniversity.Application.Functions.Grades.Queries.GetGradesList;
 using eUniversity.Application.Functions.Semesters.Queries.GetSemestersList;
 using eUniversity.Application.Functions.Students.Commands.CreateStudent;
 using eUniversity.Application.Functions.Students.Commands.UpdateStudent;

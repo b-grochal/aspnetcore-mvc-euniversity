@@ -1,0 +1,48 @@
+﻿@model EditEnrollmentViewModel
+
+<h3>Edit enrollment</h3>
+<hr />
+
+<form asp-controller="Enrollment" asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="EnrollmentId" hidden>
+    <div class="form-row">
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="StudentFirstName" class="control-label"></label>
+            <input asp-for="StudentFirstName" class="form-control" disabled/>
+            <span asp-validation-for="StudentFirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="StudentLastName" class="control-label"></label>
+            <input asp-for="StudentFirstName" class="form-control" disabled/>
+            <span asp-validation-for="StudentFirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="StudentUsername" class="control-label"></label>
+            <input asp-for="StudentUsername" class="form-control" disabled/>
+            <span asp-validation-for="StudentUsername" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="CourseName" class="control-label"></label>
+            <input asp-for="CourseName" class="form-control" disabled />
+            <span asp-validation-for="CourseName" class="text-danger"></span>
+        </div>
+        <div class="form-group col-12 col-md-4">
+            <label asp-for="GradeId" class="control-label"></label>
+            <select asp-for="GradeId" class="form-control" asp-items="ViewBag.Grades"></select>
+            <span asp-validation-for="GradeId" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+    <div class="form-group d-flex justify-content-end">
+        <input type="submit" value="Edit" class="btn btn-primary" />
+        <a class="btn btn-primary ml-2" asp-controller="Courses" asp-action="List">Cancel</a>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
