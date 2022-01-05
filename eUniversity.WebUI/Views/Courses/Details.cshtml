@@ -46,7 +46,8 @@
                                         @Html.DisplayFor(modelItem => enrollment.GradeName)
                                     </td>
                                     <td class="d-flex justify-content-end">
-                                        <a asp-controller="Courses" asp-action="Edit" asp-route-courseid="@enrollment.EnrollmentId" class="btn btn-primary mr-1">Edit</a>
+                                        <a asp-controller="Enrollments" asp-action="Edit" asp-route-enrollmentid="@enrollment.EnrollmentId" class="btn btn-primary mr-1">Edit</a>
+                                        <a asp-controller="Enrollments" asp-action="Delete" asp-route-enrollmentid="@enrollment.EnrollmentId" class="btn btn-primary mr-1">Delete</a>
                                     </td>
                                 </tr>
                             }

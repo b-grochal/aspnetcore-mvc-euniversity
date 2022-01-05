@@ -3,30 +3,30 @@
 <h3>Edit enrollment</h3>
 <hr />
 
-<form asp-controller="Enrollment" asp-action="Edit" method="post">
+<form asp-controller="Enrollments" asp-action="Edit" method="post">
     <div asp-validation-summary="All" class="text-danger"></div>
     <input asp-for="EnrollmentId" hidden>
     <div class="form-row">
         <div class="form-group col-12 col-md-4">
             <label asp-for="StudentFirstName" class="control-label"></label>
-            <input asp-for="StudentFirstName" class="form-control" disabled/>
+            <input asp-for="StudentFirstName" class="form-control" readonly/>
             <span asp-validation-for="StudentFirstName" class="text-danger"></span>
         </div>
         <div class="form-group col-12 col-md-4">
             <label asp-for="StudentLastName" class="control-label"></label>
-            <input asp-for="StudentFirstName" class="form-control" disabled/>
-            <span asp-validation-for="StudentFirstName" class="text-danger"></span>
+            <input asp-for="StudentLastName" class="form-control" readonly/>
+            <span asp-validation-for="StudentLastName" class="text-danger"></span>
         </div>
         <div class="form-group col-12 col-md-4">
             <label asp-for="StudentUsername" class="control-label"></label>
-            <input asp-for="StudentUsername" class="form-control" disabled/>
+            <input asp-for="StudentUsername" class="form-control" readonly/>
             <span asp-validation-for="StudentUsername" class="text-danger"></span>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-12 col-md-4">
             <label asp-for="CourseName" class="control-label"></label>
-            <input asp-for="CourseName" class="form-control" disabled />
+            <input asp-for="CourseName" class="form-control" readonly />
             <span asp-validation-for="CourseName" class="text-danger"></span>
         </div>
         <div class="form-group col-12 col-md-4">

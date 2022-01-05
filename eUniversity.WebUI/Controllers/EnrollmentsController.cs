@@ -57,11 +57,11 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction("List", "Courses");
         }
 
-        public async Task<IActionResult> Delete(int enrollment)
+        public async Task<IActionResult> Delete(int enrollmentId)
         {
             var getEnrollmentDetailsQuery = new GetEnrollmentDetailsQuery
             {
-                Id = enrollment
+                Id = enrollmentId
             };
 
             var enrollmentDetailsDto = await _mediator.Send(getEnrollmentDetailsQuery);

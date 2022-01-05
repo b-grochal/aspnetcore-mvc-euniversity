@@ -82,6 +82,7 @@ namespace eUniversity.WebUI.Mapper
             CreateMap<EnrollmentsListForStudentDto, EnrollmentsListForStudentViewModel>();
             CreateMap<EnrollmentDetailsDto, EditEnrollmentViewModel>();
             CreateMap<EditEnrollmentViewModel, UpdateEnrollmentCommand>();
+            CreateMap<EnrollmentDetailsDto, EnrollmentDetailsViewModel>();
         }
     }
 }
