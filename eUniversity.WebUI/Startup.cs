@@ -67,6 +67,12 @@ namespace eUniversity.WebUI
                             policyBuilder.AddRequirements(
                                 new IsTeacherRequirement()
                             ));
+
+                options.AddPolicy("isAdminOrTeacher",
+                        policyBuilder =>
+                            policyBuilder.AddRequirements(
+                                new IsAdminOrTeacherRequirement()
+                            ));
             });
 
             services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();

@@ -3,6 +3,7 @@ using eUniversity.Application.Functions.Auth.Commands.Login;
 using eUniversity.Application.Functions.Auth.Commands.Logout;
 using eUniversity.WebUI.Models.Auth;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -48,6 +49,7 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()

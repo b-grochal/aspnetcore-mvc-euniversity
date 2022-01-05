@@ -6,6 +6,7 @@ using eUniversity.Application.Functions.Enrollments.Queries.GetEnrollmentsListFo
 using eUniversity.Application.Functions.Grades.Queries.GetGradesList;
 using eUniversity.WebUI.Models.Enrollments;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -27,6 +28,7 @@ namespace eUniversity.WebUI.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Policy = "isAdminOrTeacher")]
         public async Task<IActionResult> Edit(int enrollmentId)
         {
             var getEnrollmentDetailsQuery = new GetEnrollmentDetailsQuery
@@ -42,6 +44,7 @@ namespace eUniversity.WebUI.Controllers
             return View(editEnrollmentViewModel);
         }
 
+        [Authorize(Policy = "isAdminOrTeacher")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEnrollment(int enrollmentId, EditEnrollmentViewModel editEnrollmentViewModel)
@@ -57,6 +60,7 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction("List", "Courses");
         }
 
+        [Authorize(Policy = "isAdminOrTeacher")]
         public async Task<IActionResult> Delete(int enrollmentId)
         {
             var getEnrollmentDetailsQuery = new GetEnrollmentDetailsQuery
@@ -70,7 +74,7 @@ namespace eUniversity.WebUI.Controllers
             return View(enrollmentDetailsViewModel);
         }
 
-        [HttpPost, ActionName("Delete")]
+        [Authorize(Policy = "isAdminOrTeacher")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int enrollmentId)
         {
@@ -84,6 +88,7 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction("List", "Courses");
         }
 
+        [Authorize(Policy = "isStudent")]
         public async Task<IActionResult> ListForStudent()
         {
             var getEnrollmentsListForStudentQuery = new GetEnrollmentsListForStudentQuery

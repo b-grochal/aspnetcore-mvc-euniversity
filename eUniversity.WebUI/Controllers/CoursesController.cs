@@ -11,6 +11,7 @@ using eUniversity.Application.Functions.Semesters.Queries.GetSemestersList;
 using eUniversity.Application.Functions.Subjects.Queries.GetSubjectsList;
 using eUniversity.WebUI.Models.Courses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -32,12 +33,14 @@ namespace eUniversity.WebUI.Controllers
             _mapper = mapper;
         }
 
+        [Authorize(Policy = "isAdmin")]
         public async Task<IActionResult> Create()
         {
             await PopulateCreateFormSelectElements();
             return View();
         }
 
+        [Authorize(Policy = "isAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CreateCourseViewModel createCourseViewModel)
@@ -59,6 +62,7 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        [Authorize(Policy = "isAdminOrTeacher")]
         public async Task<IActionResult> Details(int courseId)
         {
             var getCourseDetailsQuery = new GetCourseDetailsQuery
@@ -72,6 +76,7 @@ namespace eUniversity.WebUI.Controllers
             return View(courseDetailsViewModel);
         }
 
+        [Authorize(Policy = "isAdmin")]
         public async Task<IActionResult> Edit(int courseId)
         {
             var getCourseDetailsQuery = new GetCourseDetailsQuery
@@ -87,6 +92,7 @@ namespace eUniversity.WebUI.Controllers
             return View(editCourseViewModel);
         }
 
+        [Authorize(Policy = "isAdmin")]
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int courseId, EditCourseViewModel editCourseViewModel)
@@ -102,6 +108,7 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        [Authorize(Policy = "isAdmin")]
         public async Task<IActionResult> Delete(int courseId)
         {
             var getCourseDetailsQuery = new GetCourseDetailsQuery
@@ -115,6 +122,7 @@ namespace eUniversity.WebUI.Controllers
             return View(courseViewModel);
         }
 
+        [Authorize(Policy = "isAdmin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int courseId)
@@ -129,6 +137,7 @@ namespace eUniversity.WebUI.Controllers
             return RedirectToAction(nameof(List));
         }
 
+        [Authorize(Policy = "isAdminOrTeacher")]
         public async Task<IActionResult> List(string searchedName)
         {
             var getCoursesListQuery = new GetCoursesListQuery
@@ -142,6 +151,7 @@ namespace eUniversity.WebUI.Controllers
             return View(coursesListViewModel);
         }
 
+        [Authorize(Policy = "isStudent")]
         public async Task<IActionResult> ListForStudent(string searchedName)
         {
             var getCoursesListForStudentQuery = new GetCoursesListForStudentQuery
@@ -156,6 +166,7 @@ namespace eUniversity.WebUI.Controllers
             return View(coursesListViewModel);
         }
 
+        [Authorize(Policy = "isStudent")]
         public async Task<IActionResult> EnrollOnCourse(int courseId)
         {
             var getCourseDetailsQuery = new GetCourseDetailsQuery
@@ -169,6 +180,7 @@ namespace eUniversity.WebUI.Controllers
             return View(enrollOnCourseViewModel);
         }
 
+        [Authorize(Policy = "isStudent")]
         [HttpPost, ActionName("EnrollOnCourse")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnrollOnCoursePost(int courseId, EnrollOnCourseViewModel enrollOnCourseViewModel)
