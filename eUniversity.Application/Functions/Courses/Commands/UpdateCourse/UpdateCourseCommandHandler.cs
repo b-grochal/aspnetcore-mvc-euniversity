@@ -24,7 +24,8 @@ namespace eUniversity.Application.Functions.Courses.Commands.UpdateCourse
 
         public async Task<Unit> Handle(UpdateCourseCommand request, CancellationToken cancellationToken)
         {
-            var course = _mapper.Map<Course>(request);
+            var courseToUpdate = await _courseRepository.GetByIdAsync(request.CourseId);
+            var course = _mapper.Map(request, courseToUpdate);
 
             await _courseRepository.UpdateAsync(course);
 
