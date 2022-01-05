@@ -66,7 +66,7 @@
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     @if (this.User.IsInRole("Student"))
                                     {
-                                        <a class="nav-link text-dark" asp-controller="Enrollments" asp-action="ListForStudent">My enrollments</a>
+                                        <a class="btn dropdown-item" asp-controller="Enrollments" asp-action="ListForStudent">My enrollments</a>
                                     }
                                     <form class="form-inline" asp-controller="Auth" asp-action="Logout">
                                         <button type="submit" class="btn dropdown-item">Logout</button>
