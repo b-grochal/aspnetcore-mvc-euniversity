@@ -10,13 +10,13 @@ namespace eUniversity.WebUI.Authorization
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsAdminOrTeacherRequirement requirement)
         {
-            if (!context.User.IsInRole("Admin") || !context.User.IsInRole("Teacher"))
+            if (context.User.IsInRole("Admin") || context.User.IsInRole("Teacher"))
             {
-                context.Fail();
+                context.Succeed(requirement);
             }
             else
             {
-                context.Succeed(requirement);
+                context.Fail();
             }
             return Task.CompletedTask;
         }

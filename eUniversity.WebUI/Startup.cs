@@ -78,6 +78,7 @@ namespace eUniversity.WebUI
             services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
             services.AddSingleton<IAuthorizationHandler, IsStudentHandler>();
             services.AddSingleton<IAuthorizationHandler, IsTeacherHandler>();
+            services.AddSingleton<IAuthorizationHandler, IsAdminOrTeacherHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
